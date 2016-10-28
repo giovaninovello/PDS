@@ -17,9 +17,9 @@
     </table>
     <br>
     <a href="<?php echo base_url('catalogo/deletar/' . $item['idcatalago']); ?>" onclick="return confirm('Deseja deletar este usuario?');"><button class="mini ui  green button"> Excluir Item</button></a>
-    <a href="<?php echo base_url('catalogo/tombar/' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Tombar</button></a>
-    <a href="<?php echo base_url('catalogo/tombar/' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Copiar</button></a>
-    <a href="<?php echo base_url('catalogo/tombar/' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Editar</button></a>
+    <a href="<?php echo base_url('tombo/cadastro/' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Tombar</button></a>
+    <a href="<?php echo base_url('catalogo//' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Copiar</button></a>
+    <a href="<?php echo base_url('catalogo//' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Editar</button></a>
     <div class="ui items ">
         <div class="item">
             <div class="ui tiny image">
