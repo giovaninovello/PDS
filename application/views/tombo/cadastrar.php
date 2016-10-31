@@ -7,17 +7,17 @@
                 <?php echo $alerta['mensagem']; ?>
             </div>
         <?php } ?>
-        <form action="<?php echo base_url('usuario/cadastrar'); ?>" method="post">
+        <form action="<?php echo base_url('tombo/cadastrar'); ?>" method="post">
             <input type="hidden" name="captcha">
             <div class="ui  mini form  ">
                 <div class="ui one column grid">
                     <div class="column">
                         <div class=" inline eight  fields ">
                             <div class="field">
-                                <label>Nome</label>
+                                <label>Tombo</label>
                             </div>
                             <div class="six wide field">
-                                <input type="text"name="nome"  id="nome" placeholder="Nome" value=''>
+                                <input type="text"name="tbo"  id="tbo" placeholder="Numero do Tombo" value=''>
                             </div>
                         </div>
                         <div class=" inline eight fields">
