@@ -12,7 +12,7 @@
         <form action="<?php echo base_url('usuario/editar/' . $usuario['idusuarios']); ?>" method="post">
             <input type="hidden" name="captcha">
             <input type="hidden" name="id_usuario" value="<?php echo $usuario['idusuarios']; ?>">
-            <div class="ui very small form ">
+            <div class="ui form ">
                 <div class="ui one column grid">
                     <di class="column">
                         <div class=" inline eight  fields ">

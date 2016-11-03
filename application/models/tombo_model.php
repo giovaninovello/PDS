@@ -33,7 +33,25 @@ class Tombo_model extends CI_Model {
         }
     }
 
+    public function get_ultimoexemplar($id_item){
+        $this->db->select_max('tombo.exemplar');
+        $this->db->from('tombo');
+        $this->db->join('catalago','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->where('catalago.idcatalago', $id_item);
 
-    
+        $query = $this->db->get();
+
+
+        if ($query->num_rows()) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+
+
+
+
+        
+    }
 
 }

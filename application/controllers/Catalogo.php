@@ -318,6 +318,23 @@ class Catalogo extends CI_Controller
         $this->load->view('template', $dados);
 
     }
+    public function exemplares($id_item){
+
+        $id_item = (int)$id_item;
+        $alerta = null;
+        $catalagos = null;
+
+        $this->load->model('catalago_model'); //chamo o model
+        $catalagos = $this->catalago_model->get_tombo($id_item); //retorno do model chamado com seu metodo
+
+        $dados = array(
+            "alerta" => $alerta,
+            "catalogo" => $catalagos,
+            "view" => 'catalogo/exemplares'
+        );
+        $this->load->view('template', $dados);
+
+    }
 
     public  function pesquisa_cat(){
         $alerta = null;

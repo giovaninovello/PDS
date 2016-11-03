@@ -10,7 +10,7 @@
 
     <?php echo form_open_multipart('catalogo/cadastrar'); ?>
     <input type="hidden" name="captcha">
-    <div class="ui mini   form  ">
+    <div class="ui  form  ">
         <div class="ui one column grid">
             <div class="column">
                 <div class=" inline eight fields ">

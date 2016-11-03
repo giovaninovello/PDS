@@ -7,7 +7,7 @@
     <div class="ui middle aligned center aligned grid">
         <div class="column" id="login">
 
-            <form class="ui mini form  " action="<?php echo base_url('conta/entrar') ?>" method="post">
+            <form class="ui form  " action="<?php echo base_url('conta/entrar') ?>" method="post">
                 <div class="message">
                     <?php if($alerta !=null) { ?>
                         <div class="ui message<?php echo $alerta['class'];?>">

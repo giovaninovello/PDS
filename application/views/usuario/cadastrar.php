@@ -9,7 +9,7 @@
         <?php } ?>
         <form action="<?php echo base_url('usuario/cadastrar'); ?>" method="post">
             <input type="hidden" name="captcha">
-            <div class="ui  mini form  ">
+            <div class="ui  form  ">
                 <div class="ui one column grid">
                     <div class="column">
                         <div class=" inline eight  fields ">

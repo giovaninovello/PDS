@@ -4,39 +4,40 @@
     if($catalogo) {
 
     foreach ($catalogo as $item) { ?>
-    <table class=" ui very small  ">
-        <div class=" ui right pointing blue label ">
-            <b>
-                <?php echo $item['nome_aut']; ?>/
-                <?php echo $item['descricao_cla']; ?>/
-                <?php echo $item['cutter']; ?>/
-                <?php echo $item['titulo']; ?>/
-                <?php echo $item['nome']; ?>/
-                <?php echo $item['descricao']; ?></b>
-        </div>
-    </table>
-    <br>
-    <a href="<?php echo base_url('catalogo/deletar/' . $item['idcatalago']); ?>" onclick="return confirm('Deseja deletar este usuario?');"><button class="mini ui  green button"> Excluir Item</button></a>
-    <a href="<?php echo base_url('tombo/cadastro/' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Tombar</button></a>
-    <a href="<?php echo base_url('catalogo//' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Copiar</button></a>
-    <a href="<?php echo base_url('catalogo//' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Editar</button></a>
-    <div class="ui items ">
-        <div class="item">
-            <div class="ui tiny image">
-                <img src="<?php echo base_url('assets/uploads/' . $item['nome_imagem']); ?>">
+        <table class=" ui very small  ">
+            <div class=" ui right pointing blue label ">
+                <b>
+                    <?php echo $item['nome_aut']; ?>/
+                    <?php echo $item['descricao_cla']; ?>/
+                    <?php echo $item['cutter']; ?>/
+                    <?php echo $item['titulo']; ?>/
+                    <?php echo $item['nome']; ?>/
+                    <?php echo $item['descricao']; ?></b>
             </div>
-            <div class="content">
-                <i class="large green checkmark icon"></i>
-                <a class="header"> <?php echo $item['titulo']; ?><br></a>
-                <div class="meta">
-                    <i class="large green checkmark icon"></i>
-                    <span> <?php echo $item['descricao_cla']; ?><br></span>
-                </div>
-                <div class="description">
-                    <p></p>
+        </table>
+        <br>
+        <a href="<?php echo base_url('catalogo/deletar/' . $item['idcatalago']); ?>" onclick="return confirm('Deseja deletar este usuario?');"><button class="mini ui  green button"> Excluir Item</button></a>
+        <a href="<?php echo base_url('tombo/cadastro/' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Tombar</button></a>
+        <a href="<?php echo base_url('catalogo//' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Copiar</button></a>
+        <a href="<?php echo base_url('catalogo//' . $item['idcatalago']); ?>" ><button class="mini ui  green button"> Editar</button></a>
+        <a href="<?php echo base_url('catalogo/exemplares/' . $item['idcatalago']); ?>" ><button class="mini ui  black button"> Exemplares - Tombos</button></a>
+        <div class="ui items ">
+            <div class="item">
+                <div class="ui tiny image">
+                    <img src="<?php echo base_url('assets/uploads/' . $item['nome_imagem']); ?>">
                 </div>
                 <div class="content">
-                    <div class="ui two column grid container ">
+                    <i class="large green checkmark icon"></i>
+                    <a class="header"> <?php echo $item['titulo']; ?><br></a>
+                    <div class="meta">
+                        <i class="large green checkmark icon"></i>
+                        <span> <?php echo $item['descricao_cla']; ?><br></span>
+                    </div>
+                    <div class="description">
+                        <p></p>
+                    </div>
+                    <div class="content">
+                        <div class="ui two column grid container ">
                             <div class="two wide column ">
                                 <b>Titulo</b><br>
                                 <b>Subtitulo</b><br>
@@ -72,52 +73,18 @@
                                 <?php echo $item['descricao']; ?><br>
 
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
-    </div>
 
-    <table  align='center' class="ui  small very basic table fluid ">
-        <thead>
-        <tr  class="ui blue inverted segment ">
-            <th>Catalago</th>
-            <th>Tombo</th>
-            <th>Data</th>
-            <th>Exemplar</th>
-            <th>Fornecedor</th>
-            <th>Aquisicao</th>
-            <th>Visualizar</th>
-
-        </tr>
-        </thead>
-
-        <tbody>
-      <!--lopop do tombo !-->
-
-                <tr>
-                    <td><?php echo $item['idcatalago']; ?></td>
-                    <td><?php echo $item['idtombo']; ?></td>
-                    <td><?php echo $item['data_tombo']; ?></td>
-                    <td><?php echo $item['exemplar']; ?></td>
-                    <td><?php echo $item['fornecedor']; ?></td>
-                    <td><?php echo $item['descricao_aqui']; ?></td>
-                    <td>
-                        <div class="mini ui icon buttons">
-                            <a href="<?php echo base_url('usuario/editar/' . $item['idcatalago']); ?>"><button class=" mini ui icon green button"><i class="unhide icon"></i></button></a>
-                        </div>
-                    </td>
-                </tr>
-
-
-
-
-
-            <?php
-        }
-        ?>
-        </tbody>
+        <?php
+    }
+    ?>
+    </tbody>
     </table>
     <h3 class="ui blue dividing header"></h3>
 

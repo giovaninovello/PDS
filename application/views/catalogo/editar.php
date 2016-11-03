@@ -11,7 +11,7 @@
     <?php echo form_open_multipart('catalogo/editar/' . $item['idcatalago']); ?>
             <input type="hidden" name="captcha">
             <input type="hidden" name="id_cat" value="<?php echo $item['idcatalago']; ?>">
-            <div class="ui  very small form">
+            <div class="ui form">
                 <div class="ui one column grid">
                     <div class="column">
                         <div class=" inline eight fields ">

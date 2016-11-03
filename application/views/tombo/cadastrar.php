@@ -9,51 +9,52 @@
         <?php } ?>
         <form action="<?php echo base_url('tombo/cadastrar'); ?>" method="post">
             <input type="hidden" name="captcha">
-            <div class="ui  mini form  ">
+            <div class="ui  form  ">
                 <div class="ui one column grid">
                     <div class="column">
                         <div class=" inline eight  fields ">
                             <div class="field">
                                 <label>Tombo</label>
                             </div>
-                            <div class="six wide field">
+                            <div class="two wide field">
                                 <input type="text"name="tbo"  id="tbo" placeholder="Numero do Tombo" value=''>
                             </div>
                         </div>
                         <div class=" inline eight fields">
                             <div class="field">
-                                <label>Email</label>
+                                <label>Data</label>
                             </div>
-                            <div class="six wide field">
-                                <input type="text"name="email"  id="email" placeholder="Email" value=''>
+                            <div class="two wide field">
+                                <input type="text"name="data"  id="data" placeholder="Data" value='<?php echo $data; ?>'>
                             </div>
                         </div>
                         <div class="inline eight  fields">
                             <div class="field">
-                                <label>Senha</label>
+                                <label>Exemplar</label>
                             </div>
-                            <div class="three wide field">
-                                <input type="password" name="senha" class="form-control" id="email" placeholder="senha" required="">
+                            <div class="one wide field">
+                                <input type="text" name="exemplar"  id="exemplar" value='<?php echo $exemplar['exemplar']; ?>'>
                             </div>
                         </div>
                         <div class=" inline eight  fields">
                             <div class="five field">
-                                <label>Confirmar Senha</label>
+                                <label>Fornecedor</label>
                             </div>
                             <div class="three wide field">
-                                <input type="password" name="confirmar_senha"class="form-control" id="confirmar_senha" placeholder="Confirmar senha" required="">
+                                <input type="text" name="fornecedor" id="fornecedor" placeholder="" required="">
                             </div>
                         </div>
                         <div class=" inline eight fields">
                             <div class="field">
-                                <label>Tipo de Usuario</label>
+                                <label>Tipo de Aquisicao</label>
                             </div>
                             <div class="three wide field">
-                                <select  name="tipo" id="tipo" class="ui fluid dropdown">
-                                    <option value="0" >Selecione o tipo de Usuario</option>
-                                    <option value="1"> Administrador </option>
-                                    <option value="2"> Usuário </option>
-                                </select
+                                <select  name="classificacao" id="classificacao" class="  ui mini fluid dropdown">
+                                    <option value="" selected="">Selecione</option>
+                                    <?php foreach ($aqui as $aquisicao){?>
+                                        <option value="<?=$aquisicao['idaquisicao']?>"> <?=$aquisicao['descricao_aqui'];?> </option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                     </div>

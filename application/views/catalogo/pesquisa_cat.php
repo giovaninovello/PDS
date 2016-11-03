@@ -9,7 +9,7 @@
         }
     </script>
     <form action="<?= base_url()?>catalogo/pesquisar" method="post">
-        <div class="ui mini   form">
+        <div class="ui  form">
             <div class="column">
                 <div class="fields ">
                     <div class=" ui right pointing blue label ">
