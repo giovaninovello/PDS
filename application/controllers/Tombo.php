@@ -23,8 +23,8 @@ class Tombo extends CI_Controller
         $this->load->model('tombo_model'); //chamo o model
         $aquisicaotombo = $this->tombo_model->get_aqui(); //retorna  e popula o combo da aquiasicao
         $stringdedata = "%Y-%m-%d";
+
         $exemplar = $this->tombo_model->get_ultimoexemplar($id_cat);
-        
 
         $dados = array(
             "alerta"=>$alerta,
@@ -39,49 +39,64 @@ class Tombo extends CI_Controller
     }
 
 
-    //em andamento
-    public function cadastrar()
+    
+    public function cadastrar($id)
     {
+        $id_cat = (int)$id;
+        $catalagos = null;
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
             if ($this->input->post('captcha')) redirect('conta/cadastrar');
             //regras de validacao
-            $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email|is_unique[usuarios.email]');
-            $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[3]|max_length[20]');
-            $this->form_validation->set_rules('confirmar_senha', 'CONFIRMAR_SENHA', 'required|min_length[3]|max_length[20]|matches[senha]');
+            $this->form_validation->set_rules('fornecedor', 'FORNECEDOR', 'required');
+            $this->form_validation->set_rules('exemplar', 'EXEMPLAR', 'required');
 
             if ($this->form_validation->run() === true) {
-                $dados_usuario = array(
-                    'nome' => $this->input->post('nome'),
-                    'email' => $this->input->post('email'),
-                    'senha' => $this->input->post('senha'),
-                    'tipo_usu' => $this->input->post('tipo')
+                $dados_tombo = array(
+
+                    'idtombo' => $this->input->post('tbo'),
+                    'data_tombo' => $this->input->post('data'),
+                    'exemplar' => $this->input->post('exemplar'),
+                    'fornecedor' => $this->input->post('fornecedor'),
+                    'obs' => '',
+                    'aquisicao_idaquisicao' => $this->input->post('classificacao'),
+                    "catalago_idcatalago"=>$id_cat
                 );
-                $this->load->model('usuarios_model');
-                $cadastrou = $this->usuarios_model->create_usuario($dados_usuario);
-                if ($cadastrou) {
+                $this->load->model('catalago_model'); //chamo o model
+                $catalagos = $this->catalago_model->get_tombo_limit($id); //retorno do model chamado com seu metodo
+
+                $this->load->model('tombo_model');
+                $cadastrou = $this->tombo_model->cadastrar_tombo($dados_tombo);
+
+                    if ($cadastrou) {
                     $alerta = array(
                         "class" => "ui green message",
-                        "mensagem" => "O usuario foi cadastrado com sucesso!<br>" . validation_errors()
+                        "mensagem" => "O Tombo foi Inserido com sucesso!<br>" . validation_errors()
+
                     );
                 } else {
                     $alerta = array(
                         "class" => "ui red message",
-                        "mensagem" => "O usuario  nao foi cadastrado!<br>" . validation_errors()
+                        "mensagem" => "O tombo  nao foi cadastrado!<br>" . validation_errors()
                     );
                 }
             } else {
                 $alerta = array(
                     "class" => "ui red message",
-                    "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
+                    "mensagem" => "O tombo  nao foi atualizado!<br>" . validation_errors()
                 );
             }
         }
         $dados = array(
             "alerta" => $alerta,
-            "view" => 'usuario/cadastrar'
+            "catalogo" => $catalagos,
+            "view" => 'catalogo/visualizar_item'
         );
+
+
         $this->load->view('template', $dados);
+       
+        
     }
 
 

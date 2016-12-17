@@ -2,7 +2,7 @@
     <h3 class="ui blue dividing header">Visualizar Item </h3>
     <?php
     if($catalogo) {
-
+    
     foreach ($catalogo as $item) { ?>
         <table class=" ui very small  ">
             <div class=" ui right pointing blue label ">

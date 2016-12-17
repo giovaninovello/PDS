@@ -11,7 +11,7 @@
 if(!@$hidemenu)
 { ?>
 <div class="ui two column  wide    ">
-    <div class="ui inverted fixed vertical  menu  " id="fixado">
+    <div class="ui vertical inverted sidebar menu left  visible " >
         <div class="item">
             <div class="header ">Usuarios</div>
             <div class=" menu ">

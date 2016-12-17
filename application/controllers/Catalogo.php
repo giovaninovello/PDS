@@ -318,6 +318,7 @@ class Catalogo extends CI_Controller
         $this->load->view('template', $dados);
 
     }
+    
     public function exemplares($id_item){
 
         $id_item = (int)$id_item;

@@ -2,6 +2,11 @@
    
 
     <h3 class="ui blue dividing header">Tombos</h3>
+    <?php if ($alerta) { ?>
+        <div class="ui message-<?php echo $alerta['class']; ?>">
+            <?php echo $alerta['mensagem']; ?>
+        </div>
+    <?php } ?>
 
     <table  align='center' class="ui  small very basic table fluid ">
         <thead>

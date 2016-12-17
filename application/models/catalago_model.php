@@ -25,8 +25,8 @@ class Catalago_model extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('catalago');
-        $this->db->join('classificacao','classificacao.id_cla = catalago.Classificacao_id');
-        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.Tipo_Documento_id');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
         $this->db->like('titulo', $termo);
         $query= $this->db->get();
         return $query->result_array();
@@ -113,8 +113,8 @@ class Catalago_model extends CI_Model {
         $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
         $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
         $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
-        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
-        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        //$this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        //$this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
         $this->db->where('catalago.idcatalago', $id_item);
         $this->db->limit(1);
 
@@ -138,6 +138,30 @@ class Catalago_model extends CI_Model {
         $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
         $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
         $this->db->where('catalago.idcatalago', $id_item);
+
+
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->result_array();
+        } else {
+            return false;
+        }
+    }
+//retorna a visualizcao do item com limit de 1 para nao mostrar todos quando cadastra o tombo
+    public function get_tombo_limit($id_item) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->where('catalago.idcatalago', $id_item);
+        $this->db->limit(1);
+
 
 
         $item = $this->db->get();

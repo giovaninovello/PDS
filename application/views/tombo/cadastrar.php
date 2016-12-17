@@ -7,11 +7,20 @@
                 <?php echo $alerta['mensagem']; ?>
             </div>
         <?php } ?>
-        <form action="<?php echo base_url('tombo/cadastrar'); ?>" method="post">
+        <?php if ($cat ) { ?>
+        <form action="<?php echo base_url('tombo/cadastrar/' .$cat); ?>" method="post">
             <input type="hidden" name="captcha">
             <div class="ui  form  ">
                 <div class="ui one column grid">
                     <div class="column">
+                        <div class=" inline eight  fields ">
+                            <div class="field">
+                                <label>Id_Exemplar</label>
+                            </div>
+                            <div class="two wide field">
+                                <input type="text"name="id"  id="id" placeholder="" value='<?php echo $cat; ?>' disabled="">
+                            </div>
+                        </div>
                         <div class=" inline eight  fields ">
                             <div class="field">
                                 <label>Tombo</label>
@@ -33,7 +42,7 @@
                                 <label>Exemplar</label>
                             </div>
                             <div class="one wide field">
-                                <input type="text" name="exemplar"  id="exemplar" value='<?php echo $exemplar['exemplar']; ?>'>
+                                <input type="text" name="exemplar"  id="exemplar" value='<?php echo $exemplar['exemplar']+1; ?>'>
                             </div>
                         </div>
                         <div class=" inline eight  fields">
@@ -74,9 +83,10 @@
                             <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="mini ui red button">voltar</a>
                             <button type="submit"  name="cadastrar" value="cadastrar"class="mini ui  blue button" onclick="loading()">Cadastrar </button>
                         </div>
+                        
                     </div>
         </form>
-
+        <?php } ?>
     </div>
 
 
