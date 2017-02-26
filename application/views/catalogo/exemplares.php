@@ -33,7 +33,7 @@
             <td><?php echo $item['idtombo']; ?></td>
             <td><?php echo $item['data_tombo']; ?></td>
             <td><?php echo $item['exemplar']; ?></td>
-            <td><?php echo $item['fornecedor']; ?></td>
+            <td><?php echo $item['endereco_f']; ?></td>
             <td><?php echo $item['descricao_aqui']; ?></td>
             <td>
                 <div class="mini ui icon buttons">

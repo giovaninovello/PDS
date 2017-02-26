@@ -50,7 +50,12 @@
                                 <label>Fornecedor</label>
                             </div>
                             <div class="three wide field">
-                                <input type="text" name="fornecedor" id="fornecedor" placeholder="" required="">
+                                <select  name="fornecedor" id="fornecedor" class="  ui mini fluid dropdown">
+                                    <option value="" selected="">Selecione</option>
+                                    <?php foreach ($forn as $fornecedor){?>
+                                        <option value="<?=$fornecedor['idfornecedor']?>"> <?=$fornecedor['endereco_f'];?> </option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div class=" inline eight fields">
@@ -81,7 +86,8 @@
                     <div class="fields">
                         <div class="field">
                             <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="mini ui red button">voltar</a>
-                            <button type="submit"  name="cadastrar" value="cadastrar"class="mini ui  blue button" onclick="loading()">Cadastrar </button>
+                            <button type="submit"  name="cadastrar" value="cadastrar"class="mini ui  green button">Cadastrar </button>
+
                         </div>
                         
                     </div>

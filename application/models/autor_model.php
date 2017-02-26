@@ -39,6 +39,13 @@ class Autor_model extends CI_Model {
         $this->db->insert('autores_catalago',$dados_autor);
         return $this->db->affected_rows()?true:false;
     }
+    
+    //cadastros de autores
+    public function create_autor($dados_autor){
+
+        $this->db->insert('autor',$dados_autor);
+        return $this->db->affected_rows()?true:false;
+    }
 
     public function get_autores_has_catalago(){
         $query = $this->db->get('autores_catalago'); //select * from autores_catalago

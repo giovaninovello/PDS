@@ -1,6 +1,5 @@
-
-<div class="ui one column doubling  container  ">
-    <h3 class="ui blue dividing header">Cadastrar Catalago </h3>
+<div class="ui one column doubling   container c ">
+    <h3 class="ui blue dividing header">Cadastrar Usuarios </h3>
 
     <?php if ($alerta) { ?>
         <div class="ui message-<?php echo $alerta['class']; ?>">
@@ -10,14 +9,14 @@
 
     <?php echo form_open_multipart('catalogo/cadastrar'); ?>
     <input type="hidden" name="captcha">
-    <div class="ui  form  ">
+    <div class="ui  form ">
         <div class="ui one column grid">
             <div class="column">
                 <div class=" inline eight fields ">
                     <div class=" field">
                         <label>Codigo</label>
                     </div>
-                    <div class="eight  field">
+                    <div class="eight wide field">
                         <input type="text"name="cod"  id="cod" placeholder="Codigo" value='' disabled="true">
                     </div>
                 </div>
@@ -148,10 +147,10 @@
                         <label>Imagem</label>
                     </div>
                     <div>
-                    <label for="nome_arquivo" class="ui icon button">
-                        <i class="file icon"></i>
-                        Selecionar Imagem</label>
-                    <input type="file" id="nome_arquivo" name="nome_arquivo" style="display:none">
+                        <label for="nome_arquivo" class="ui icon button">
+                            <i class="file icon"></i>
+                            Selecionar Imagem</label>
+                        <input type="file" id="nome_arquivo" name="nome_arquivo" style="display:none">
                     </div>
                 </div>
 
@@ -190,34 +189,30 @@
                         </select>
                     </div>
                 </div>
-                <script>
-                    function loading() {
-                        $("#load").addClass("loading");
-                        setTimeout(function(){
-                            $("#load").removeClass("loading");
-                        },1000);
-                    }
-
-                </script>
-
             </div>
         </div>
-    </div>
-    <div class="sixteen wide column">
-        <div class="fields">
-            <div class="field">
-                <a href="<?php echo base_url('dashboard'); ?>" type="submit" class=" mini ui  red button  ">voltar</a>
-                <button type="submit"  name="cadastrar" value="cadastrar"class=" mini ui  blue   button ">Cadastrar </button>
-                
+        <script>
+            function loading() {
+                $("#load").addClass("loading");
+                setTimeout(function(){
+                    $("#load").removeClass("loading");
+                },1000);
+            }
+
+        </script>
+
+
+        <div class="sixteen wide column">
+            <div class="fields">
+                <div class="field">
+                    <a href="<?php echo base_url('dashboard'); ?>" type="submit" class=" mini ui  red button  ">voltar</a>
+                    <button type="submit"  name="cadastrar" value="cadastrar"class=" mini ui  blue   button ">Cadastrar </button>
+
+                </div>
             </div>
+
         </div>
     </div>
-
-
-
-
-    <br>
-
 </div>
 
 
@@ -225,5 +220,19 @@
 
 
 
-     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

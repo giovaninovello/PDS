@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario extends CI_Controller
+class Autor extends CI_Controller
 {
 
     public function __construct()
@@ -18,30 +18,21 @@ class Usuario extends CI_Controller
     public function visualizar_todos()
     {
         $alerta = null;
-        $usuario = null;
+        $fornecedores = null;
 
-        $this->load->model('usuarios_model'); //chamo o model
-        $usuarios = $this->usuarios_model->get_usuarios(); //retorno do model chamado com seu metodo
+        $this->load->model('fornecedores_model'); //chamo o model
+        $fornecedores = $this->fornecedores_model->get_fornecedores(); //retorno do model chamado com seu metodo
 
 
         $dados = array(
             "alerta" => $alerta,
-            "usuarios" => $usuarios,
-            "view" => 'usuario/visualizar_todos'
+            "fornecedor" => $fornecedores,
+            "view" => 'fornecedor/visualizar_todos'
         );
         $this->load->view('template', $dados);
     }
 
-    public function relatoriousuario(){
-        $this->load->model('usuarios_model');
-        $usuarios=$this->usuarios_model->get_usuarios();
 
-        $dados =array(
-            "usuarios"=>$usuarios,
-            "view"=>'usuario/relatoriousuarios'
-        );
-        $this->load->view('template', $dados);
-    }
 
     public function cadastrar()
     {
@@ -49,45 +40,39 @@ class Usuario extends CI_Controller
         if ($this->input->post('cadastrar') === "cadastrar") {
             if ($this->input->post('captcha')) redirect('conta/cadastrar');
             //regras de validacao
-            $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email|is_unique[usuarios.email]');
-            $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[3]|max_length[20]');
-            $this->form_validation->set_rules('confirmar_senha', 'CONFIRMAR_SENHA', 'required|min_length[3]|max_length[20]|matches[senha]');
+            $this->form_validation->set_rules('nome', 'NOME', 'required');
 
             if ($this->form_validation->run() === true) {
-                $dados_usuario = array(
-                    'nome' => $this->input->post('nome'),
-                    'email' => $this->input->post('email'),
-                    'senha' => $this->input->post('senha'),
-                    'tipo_usu' => $this->input->post('tipo')
+                $dados_autor = array(
+                    'nome_aut' => $this->input->post('nome')
+
                 );
-                $this->load->model('usuarios_model');
-                $cadastrou = $this->usuarios_model->create_usuario($dados_usuario);
+                $this->load->model('autor_model');
+                $cadastrou = $this->autor_model->create_autor($dados_autor);
                 if ($cadastrou) {
                     $alerta = array(
                         "class" => "ui green message",
-                        "mensagem" => "O usuario foi cadastrado com sucesso!<br>" . validation_errors()
+                        "mensagem" => "Autor cadastrado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
                         "class" => "ui red message",
-                        "mensagem" => "O usuario  nao foi cadastrado!<br>" . validation_errors()
+                        "mensagem" => "Autor  nao cadastrado!<br>" . validation_errors()
                     );
                 }
             } else {
                 $alerta = array(
                     "class" => "ui red message",
-                    "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
+                    "mensagem" => " O Autor  nao foi atualizado!<br>" . validation_errors()
                 );
             }
         }
         $dados = array(
             "alerta" => $alerta,
-            "view" => 'usuario/cadastrar'
+            "view" => 'autor/cadastrar'
         );
         $this->load->view('template', $dados);
     }
-
-   
 
     public function editar($id_usuario)
     {
@@ -200,55 +185,6 @@ class Usuario extends CI_Controller
     }
 
 
-    public function pdf()
-    {
 
 
-        $mpdf = new mPDF();
-
-        $html = $this->load->view('templaterel', $this->visualizar_todos(), true);
-
-        $mpdf->SetHeader($this->getHeader());
-
-        $mpdf->SetFooter($this->getFooter());
-
-        $mpdf->writeHTML($html);
-
-        $mpdf->AddPage();
-
-        $mpdf->WriteHTML('<p><b>Minha nova página no arquivo PDF</b></p>');
-
-        $mpdf->Output();
-
-        $dados = array(
-            "view" => 'usuario/pdf',
-
-        );
-        $this->load->view('templaterel', $dados);
-    }
-    /*
-    * Método para montar o cabeça do relatório em PDF
-    */
-    protected function getHeader(){
-        $data = date('j/m/Y');
-        $retorno = "<table class=\"tbl_header\" width=\"1000\">  
-               <tr>  
-                 <td align=\"left\">Biblioteca mPDF</td>  
-                 <td align=\"right\">Gerado em: $data</td>  
-               </tr>  
-             </table>";
-        return $retorno;
-    }
-
-    /*
-    * Método para montar o Rodapé do relatório em PDF
-    */
-    protected function getFooter(){
-        $retorno = "<table class=\"tbl_footer\" width=\"1000\">  
-               <tr>  
-                 <td align=\"right\">Página: {PAGENO}</td>  
-               </tr>  
-             </table>";
-        return $retorno;
-    }
 }

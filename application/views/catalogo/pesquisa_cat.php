@@ -20,8 +20,9 @@
                     </div>
                     <div class="item right">
                         <div class=" mini ui  icon buttons">
-                            <a href=""><button class=" ui icon green button"  type="submit"  id="load" onclick="loading()"><i class="checkmark icon "></i></button></a>
+
                         </div>
+                        <a href=""><button class=" ui icon large green button"  type="submit"><i class="search  icon "></i></button></a>
                     </div>
                 </div>
             </div>

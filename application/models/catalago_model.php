@@ -136,6 +136,7 @@ class Catalago_model extends CI_Model {
         $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
         $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
         $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
         $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
         $this->db->where('catalago.idcatalago', $id_item);
 

@@ -20,7 +20,7 @@
                             <input type="text"name="pesquisar"  id="pesquisar" required="" placeholder="Digite aqui sua pesquisa">
                         </div>
                         <div class="item right">
-                            <div class=" mini ui  icon buttons">
+                            <div class="  ui  icon buttons">
                                 <a href=""><button class=" ui icon green button"  type="submit"  id="load" onclick="loading()"><i class="checkmark icon "></i></button></a>
                             </div>
                         </div>
