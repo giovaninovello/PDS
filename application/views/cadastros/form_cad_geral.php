@@ -25,6 +25,11 @@
                     <div class="ui raised segment"><a class="ui blue ribbon label"><i class="add user large icon"></i><a  href="<?php echo base_url('autor/cadastrar') ?>"<a class=""><b>Cadastros de Autores</b></a></a></div>
                 </div>
             </div>
+            <div class="column">
+                <div class="ui ">
+                    <div class="ui raised segment"><a class="ui blue ribbon label"><i class="add user large icon"></i><a  href="<?php echo base_url('aluno/cadastrar') ?>"<a class=""><b>Cadastros de Alunos</b></a></a></div>
+                </div>
+            </div>
 
 
         </div>
