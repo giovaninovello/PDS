@@ -14,11 +14,12 @@
             <th>E-MAIL</th>
             <th>DATA</th>
             <th>TIPO DE USUARIO</th>
-            <th>ACOES</th>
+            <th>EDITAR</th>
+            <th>DELETAR</th>
         </tr>
         </thead>
         <tfoot>
-        <tr><th colspan="6">
+        <tr><th colspan="8">
                 <div class="ui right floated pagination menu">
                     <a class="icon item">
                         <i class="left chevron icon"></i>
@@ -46,9 +47,14 @@
                     <td>
                         <div class="mini ui icon buttons">
                             <a href="<?php echo base_url('usuario/editar/' . $usuario['idusuarios']); ?>"><button class=" mini ui icon green button"><i class="file icon"></i></button></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="mini ui icon buttons">
                             <a href="<?php echo base_url('usuario/deletar/' . $usuario['idusuarios']); ?>" onclick="return confirm('Deseja deletar este usuario?');"><button class="mini ui icon red button"><i class="trash icon"></i></button></a>
                         </div>
                     </td>
+
                 </tr>
 
                 <?php

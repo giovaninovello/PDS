@@ -1,9 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Auth
 {
+
+
     private $CI; // Receberá a instância do Codeigniter
-    private $permissaoView = 'sem-permissao'; // Recebe o nome da view correspondente à página informativa de usuário sem permissão de acesso
-    private $loginView = 'login'; // Recebe o nome da view correspondente à tela de login
+    private $permissaoView = 'conta/sem_permissao'; // Recebe o nome da view correspondente à página informativa de usuário sem permissão de acesso
+    private $loginView = 'conta/entrar'; // Recebe o nome da view correspondente à tela de login
     public function __construct(){
         /*
          * Criamos uma instância do CodeIgniter na variável $CI
@@ -18,6 +20,7 @@ class Auth
         $array = array('classe' => $classe, 'metodo' => $metodo);
         $qryMetodos = $this->CI->db->where($array)->get('metodos');
         $resultMetodos = $qryMetodos->result();
+
         /*
          * Caso o método passado ainda não conste na tabela "metodos"
          * ele é inserido através de $this->CI->db->insert('metodos', $data);
@@ -43,19 +46,21 @@ class Auth
             }
             else{
                 $nome = $this->CI->session->userdata('nome');
-                $logged_in = $this->CI->session->userdata('logged');
-                $data = $this->CI->session->userdata('data');
+                $logged_in = $this->CI->session->userdata('logado');
                 $email = $this->CI->session->userdata('email');
                 $id_usuario =  $this->CI->session->userdata('id_usuario');
-                $id_metodo = $resultMetodos[0]->id;
+                $id_metodo = $resultMetodos[0]->id_metodo;
+
                 /*
                  * Se o usuário estiver logado faz a verificação da permissão
                  * caso contrário redireciona para uma tela de login
                  */
-                if($nome && $logged && $id_usuario){
+                if($nome && $logged_in && $id_usuario){
                     $array = array('id_metodo' => $id_metodo, 'id_usuario' => $id_usuario);
-                    $qryPermissoes = $this->CI->db->$this->CI->db->where($array)->get('permissoes');
+                    $qryPermissoes = $this->CI->db->where($array)->get('permissoes');
                     $resultPermissoes = $qryPermissoes->result();
+                
+
                     /*
                      * Se o usuário não tiver a permissão para acessar o método,
                      * ou seja, não estiver relacionado na tabela "permissoes",

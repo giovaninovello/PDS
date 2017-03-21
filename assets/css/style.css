@@ -1,5 +1,6 @@
 body > .grid {
     height: 100%;
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
 }
 .image {
     margin-top: -100px;

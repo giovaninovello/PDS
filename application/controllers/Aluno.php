@@ -45,6 +45,7 @@ class Aluno extends CI_Controller
 
     public function cadastrar()
     {
+       
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
             if ($this->input->post('captcha')) redirect('conta/cadastrar');

@@ -39,21 +39,21 @@ class Catalogo extends CI_Controller
 
 
     public function visualizar_todos()
-    {
-        $alerta = null;
-        $catalagos = null;
+{
+    $alerta = null;
+    $catalagos = null;
 
-        $this->load->model('catalago_model'); //chamo o model
-        $catalagos = $this->catalago_model->get_catalago(); //retorno do model chamado com seu metodo
+    $this->load->model('catalago_model'); //chamo o model
+    $catalagos = $this->catalago_model->get_catalago(); //retorno do model chamado com seu metodo
 
 
-        $dados = array(
-            "alerta" => $alerta,
-            "catalogo" => $catalagos,
-            "view" => 'catalogo/visualizar_todos'
-        );
-        $this->load->view('template', $dados);
-    }
+    $dados = array(
+        "alerta" => $alerta,
+        "catalogo" => $catalagos,
+        "view" => 'catalogo/visualizar_todos'
+    );
+    $this->load->view('template', $dados);
+}
 
     public function pesquisar(){
 

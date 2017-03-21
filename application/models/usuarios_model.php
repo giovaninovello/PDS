@@ -33,7 +33,23 @@ class Usuarios_model extends CI_Model {
             return false;
         }
     }
-   
+
+
+
+    function get_permissao_edit($termo,$id_metodo) {
+        //passandi 2 parametros para visualizar um  registro apenas o selcionado
+
+        $this->db->select('*');
+        $this->db->from('permissoes');
+        $this->db->join('metodos','metodos.id = permissoes.id_metodo');
+        $this->db->join('usuarios','usuarios.idusuarios = permissoes.id_usuario');
+        $this->db->where('idusuarios', $termo);
+        $this->db->where('id_metodo', $id_metodo);
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+
     //PEGA ID DO USUARIO COM PARAMATRO
     public function get_usuario($id_usuario) {
         $this->db->where('idusuarios', $id_usuario);
@@ -46,6 +62,7 @@ class Usuarios_model extends CI_Model {
             return false;
         }
     }
+
     //UPDATE CRUD
     public function update_usuario($id_usuario,$usuario_atualizado){
         $this->db->where('idusuarios',$id_usuario);
@@ -74,6 +91,9 @@ class Usuarios_model extends CI_Model {
         $this->db->insert('usuarios',$dados_usuario);
         return $this->db->affected_rows()?true:false;
     }
+
+
+    
     
 
 }

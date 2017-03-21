@@ -8,13 +8,17 @@ class Conta extends CI_Controller {
 
         parent::__construct();
 
+
         if ($this->session->userdata('logado')) {
             if(!$this->uri->segment(2)=='sair')
+                
             redirect('dashboard');
         }
+
     }
 
     public function entrar() {
+
         $alerta = null;
         if ($this->input->post('entrar') === 'entrar') {
             if ($this->input->post('captcha'))
@@ -35,16 +39,19 @@ class Conta extends CI_Controller {
                     $usuario = $login_existe;
                     //configura a sessao
                     $session = array(
-                        'email' => $usuario['email'],
-                        'create' => $usuario['create'],
+                        'nome'=> $usuario['nome'],
                         'logado' => TRUE,
+                        'email' => $usuario['email'],
+                        'id_usuario'=> $usuario['idusuarios'],
                         'tipo'=>$usuario['tipo_usu']
                         
                     );
+                   
                     
                     //inicializa a sessao
                     $this->session->set_userdata($session);
                     redirect('dashboard');
+
                 } else {
                     //login invalido
                     $alerta = array(
@@ -67,11 +74,29 @@ class Conta extends CI_Controller {
 
         );
         $this->load->view('template', $dados);
+
+       
     }
 
+    public function sem_permissao() {
+
+
+        $dados = array(
+            "view"=>'conta/sem-permissao',
+            "hidemenu"=>true
+
+
+        );
+        $this->load->view('template', $dados);
+
+
+    }
+    
     public function sair() {
+
         $this->session->sess_destroy();
         redirect('conta/entrar');
+
     }
     
 }
