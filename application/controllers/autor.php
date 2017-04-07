@@ -18,21 +18,19 @@ class Autor extends CI_Controller
     public function visualizar_todos()
     {
         $alerta = null;
-        $fornecedores = null;
+        $autores = null;
 
-        $this->load->model('fornecedores_model'); //chamo o model
-        $fornecedores = $this->fornecedores_model->get_fornecedores(); //retorno do model chamado com seu metodo
+        $this->load->model('autor_model'); //chamo o model
+        $autores = $this->autor_model->get_autor(); //retorno do model chamado com seu metodo
 
 
         $dados = array(
             "alerta" => $alerta,
-            "fornecedor" => $fornecedores,
-            "view" => 'fornecedor/visualizar_todos'
+            "autor" => $autores,
+            "view" => 'autor/visualizar_todos'
         );
         $this->load->view('template', $dados);
     }
-
-
 
     public function cadastrar()
     {
@@ -144,41 +142,41 @@ class Autor extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-    public function deletar($id_usuario)
+    public function deletar($id_autor)
     {
         $alerta = null;
-        $id_usuario = (int)$id_usuario;
-        if ($id_usuario) {
-            $this->load->model('usuarios_model');
-            $existe = $this->usuarios_model->get_usuario($id_usuario);
+        $id_autor = (int)$id_autor;
+        if ($id_autor) {
+            $this->load->model('autor_model');
+            $existe = $this->autor_model->get_autor_delete($id_autor);
             if ($existe) {
-                $deletou = $this->usuarios_model->delete_usuario($id_usuario);
+                $deletou = $this->autor_model->delete_autor($id_autor);
                 if ($deletou) {
                     $alerta = array(
-                        "class" => "success",
-                        "mensagem" => "O usuario foi deletado com sucesso!<br>" . validation_errors()
+                        "class" => "ui green message",
+                        "mensagem" => "Autor deletado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
-                        "class" => "danger",
-                        "mensagem" => "O usuario  nao foi deletado!<br>" . validation_errors()
+                        "class" => "ui red message",
+                        "mensagem" => "Autor  nao foi deletado!<br>" . validation_errors()
                     );
                 }
                 $dados = array(
                     "alerta" => $alerta,
-                    "view" => 'usuario/deletar'
+                    "view" => 'autor/deletar'
                 );
                 $this->load->view('template', $dados);
             } else {
                 $alerta = array(
                     "class" => "ui red message",
-                    "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
+                    "mensagem" => "Atençao o autor nao esta cadastrado!<br>" . validation_errors()
                 );
             }
         } else {
             $alerta = array(
                 "class" => "ui red message",
-                "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
+                "mensagem" => "Atençao o autor informado esta incorreto!<br>" . validation_errors()
             );
 
         }

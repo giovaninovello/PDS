@@ -37,8 +37,6 @@ class Tombo extends CI_Controller
         );
         $this->load->view('template', $dados);
     }
-
-
     
     public function cadastrar($id)
     {

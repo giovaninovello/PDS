@@ -15,6 +15,14 @@ class Usuario extends CI_Controller
         }
 
     }
+    public function loading()
+    {
+        $dados = array(
+            "view" => 'includes/loading'
+        );
+        $this->load->view('template', $dados);
+    }
+
 
     public function visualizar_todos()
     {
@@ -35,6 +43,7 @@ class Usuario extends CI_Controller
             "usuarios" => $usuarios,
             "view" => 'usuario/visualizar_todos'
         );
+
         $this->load->view('template', $dados);
     }
 
@@ -73,10 +82,12 @@ class Usuario extends CI_Controller
                 $this->load->model('usuarios_model');
                 $cadastrou = $this->usuarios_model->create_usuario($dados_usuario);
                 if ($cadastrou) {
+
                     $alerta = array(
                         "class" => "ui green message",
                         "mensagem" => "O usuario foi cadastrado com sucesso!<br>" . validation_errors()
                     );
+                    
                 } else {
                     $alerta = array(
                         "class" => "ui red message",
@@ -94,11 +105,10 @@ class Usuario extends CI_Controller
             "alerta" => $alerta,
             "view" => 'usuario/cadastrar'
         );
+
         $this->load->view('template', $dados);
     }
-
-
-
+    
     public function editar($id_usuario)
 {
     $alerta = null;
@@ -244,7 +254,6 @@ class Usuario extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-
     public function deletar($id_usuario)
     {
         $alerta = null;
@@ -284,7 +293,6 @@ class Usuario extends CI_Controller
 
         }
     }
-
 
     public function pdf()
     {

@@ -33,7 +33,6 @@ class Fornecedores_model extends CI_Model {
             return false;
         }
     }
-   
     //PEGA ID DO USUARIO COM PARAMATRO
     public function get_fornecedor($id_fornecedor) {
         $this->db->where('idfornecedor', $id_fornecedor);

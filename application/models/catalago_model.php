@@ -32,18 +32,7 @@ class Catalago_model extends CI_Model {
         return $query->result_array();
 
    }
-
-    //pega o item para jogar no combobox do cadastro de catalagos
-    public function get_itemcatalago() {
-        $query = $this->db->get('tipo_documento');
-
-        if ($query->num_rows()) {
-            return $query->result_array();
-        } else {
-            return false;
-        }
-    }
-
+    //pega o item tipo_documemto para jogar no combobox do cadastro de catalagos
     public function get_classificacao() {
         $query = $this->db->get('classificacao');
 
@@ -53,7 +42,7 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-
+    //pega o item classificacao para jogar no combobox do cadastro de catalagos
     public function get_cidade() {
         $query = $this->db->get('cidade');
 
@@ -63,7 +52,7 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-
+    //pega o item cidade para jogar no combobox do cadastro de catalagos
     public function get_doc() {
         $query = $this->db->get('tipo_documento');
 
@@ -73,16 +62,7 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-
-    public function get_cla() {
-        $query = $this->db->get('classificacao');
-
-        if ($query->num_rows()) {
-            return $query->result_array();
-        } else {
-            return false;
-        }
-    }
+    //pega o item para jogar no combobox do cadastro de catalagos
     //CRUD CADASTRO
     public function create_catalago($dados_catalago){
 
@@ -90,7 +70,7 @@ class Catalago_model extends CI_Model {
         return $this->db->affected_rows()?true:false;
 
     }
-    
+    //crud insert
     public function get_catalago() {
         $this->db->select('*');
         $this->db->from('catalago');
@@ -104,7 +84,7 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-
+    //lista os livros com nome
     public function get_item($id_item) {
         $this->db->select('*');
         $this->db->from('catalago');
@@ -126,7 +106,7 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-    
+    //lista os tombos
     public function get_tombo($id_item) {
         $this->db->select('*');
         $this->db->from('catalago');
@@ -149,7 +129,7 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-//retorna a visualizcao do item com limit de 1 para nao mostrar todos quando cadastra o tombo
+    //retorna a visualizcao do item com limit de 1 para nao mostrar todos quando cadastra o tombo
     public function get_tombo_limit($id_item) {
         $this->db->select('*');
         $this->db->from('catalago');
@@ -173,8 +153,7 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-
-
+    //editar livros
     public function update_item($id_item,$item_atualizado){
         $this->db->where('idcatalago',$id_item);
         $this->db->update('catalago',$item_atualizado);
@@ -190,7 +169,6 @@ class Catalago_model extends CI_Model {
              return $this->db->insert_id();
 
     }
-
     //DELECAO CRUD
     public function delete_catalago($id_item){
         $this->db->where('idcatalago',$id_item);
@@ -202,13 +180,10 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
-
     //editar
     public function get_edit($id_cat) {
         $this->db->where('idcatalago', $id_cat);
-
         $catalago = $this->db->get('catalago');
-
         if ($catalago->num_rows()) {
             return $catalago->row_array();
         } else {

@@ -32,8 +32,6 @@ class Fornecedor extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-
-
     public function cadastrar()
     {
         $alerta = null;
@@ -54,18 +52,18 @@ class Fornecedor extends CI_Controller
                 if ($cadastrou) {
                     $alerta = array(
                         "class" => "ui green message",
-                        "mensagem" => "O usuario foi cadastrado com sucesso!<br>" . validation_errors()
+                        "mensagem" => "Fornecedor foi cadastrado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
                         "class" => "ui red message",
-                        "mensagem" => "O usuario  nao foi cadastrado!<br>" . validation_errors()
+                        "mensagem" => "Fornecedor  nao foi cadastrado!<br>" . validation_errors()
                     );
                 }
             } else {
                 $alerta = array(
                     "class" => "ui red message",
-                    "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
+                    "mensagem" => " Fornecedor  nao foi atualizado!<br>" . validation_errors()
                 );
             }
         }

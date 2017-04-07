@@ -33,9 +33,7 @@ class Usuarios_model extends CI_Model {
             return false;
         }
     }
-
-
-
+    //listando todoas as permissões de um usuario
     function get_permissao_edit($termo,$id_metodo) {
         //passandi 2 parametros para visualizar um  registro apenas o selcionado
 
@@ -49,7 +47,6 @@ class Usuarios_model extends CI_Model {
         return $query->result_array();
 
     }
-
     //PEGA ID DO USUARIO COM PARAMATRO
     public function get_usuario($id_usuario) {
         $this->db->where('idusuarios', $id_usuario);
@@ -62,7 +59,6 @@ class Usuarios_model extends CI_Model {
             return false;
         }
     }
-
     //UPDATE CRUD
     public function update_usuario($id_usuario,$usuario_atualizado){
         $this->db->where('idusuarios',$id_usuario);

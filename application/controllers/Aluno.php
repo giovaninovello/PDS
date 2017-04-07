@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Aluno extends CI_Controller
 {
 
+
     public function __construct()
     {
 
@@ -17,6 +18,10 @@ class Aluno extends CI_Controller
 
     public function visualizar_todos()
     {
+
+        $f = new Auth();
+        $f->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
+        
         $alerta = null;
         $usuario = null;
 
@@ -196,6 +201,7 @@ class Aluno extends CI_Controller
         }
     }
 
+   
 
 
 

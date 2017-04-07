@@ -55,7 +55,6 @@ class Permissao extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-
     public function cadastrar()
     {
        
@@ -99,7 +98,6 @@ class Permissao extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-
     public function deletar($id_permissao)
     {
         $alerta = null;
@@ -139,8 +137,6 @@ class Permissao extends CI_Controller
 
         }
     }
-
-
 
     //METODOS CLASSE
 

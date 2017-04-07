@@ -1,5 +1,5 @@
 
-<div class="ui one column doubling  container  ">
+<div class="ui one column doubling  container  "style="padding-left: 10px">
     <h3 class="ui blue dividing header">Editar Item do Catalago </h3>
 
     <?php if ($alerta) { ?>
@@ -22,6 +22,8 @@
                                 <input type="text" name="cod" id="cod" placeholder="Codigo"
                                        value='<?php echo $item['idcatalago']; ?>' disabled="true">
                             </div>
+
+
                         </div>
                         <div class="  inline eight fields ">
                             <div class=" field">
@@ -160,7 +162,7 @@
                                 <label>Data Publicação</label>
                             </div>
                             <div class=" two wide field">
-                                <input type="text"name="datapub"  id="datapub" placeholder="Data de Publicação" value='<?php echo $item['data_public']; ?>'>
+                                <input type="text" class="data" name="datapub"  id="datapub" placeholder="Data de Publicação" value='<?php echo date('d/m/Y',strtotime($item['data_public'])); ?>'>
                             </div>
                         </div>
                         <div class="  inline eight  fields ">
@@ -174,9 +176,10 @@
                                 <input type="file" id="nome_arquivo" name="nome_arquivo" style="display:none">
                             </div>
                             <div class="three wide column">
-                                <td><h1 class="ui image center header aligned"><img
+                                <td><h1 class="ui image center header aligned" id="nome_imagem"><img
                                             src="<?php echo base_url('assets/uploads/' . $item['nome_imagem']); ?>"
-                                            class="ui image "></h1></td>
+                                            class="ui image "></h1>
+                                </td>
                             </div>
                         </div>
 
@@ -222,21 +225,17 @@
                                 </select>
                             </div>
                         </div>
-                        <br>
-                        <script>
-                            function loading() {
-                                $("#load").addClass("loading");
-                                setTimeout(function(){
-                                    $("#load").removeClass("loading");
-                                },5000);
-                            }
-                        </script>
-                        <div class="fields">
-                            <div class="field">
-                                <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui mini red button">voltar</a>
-                                <button type="submit"  name="editar" value="editar"class="ui mini blue   button">Salvar Alterações </button>
+
+
+                        <div class="sixteen wide column">
+                            <div class="fields">
+
                             </div>
-                        </div>
+                            <div class="ui buttons">
+                                <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui  default button">voltar</a>
+                                <div class="or"></div>
+                                <button class="ui positive button" type="submit"  name="editar" value="editar"class=" ui  blue button" >Salvar Alterações</button>
+                            </div>
         </form>
     <?php } ?>
 </div>

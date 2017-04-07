@@ -84,12 +84,12 @@
                 </script>
                 <div class="sixteen wide column">
                     <div class="fields">
-                        <div class="field">
-                            <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="mini ui red button">voltar</a>
-                            <button type="submit"  name="cadastrar" value="cadastrar"class="mini ui  green button">Cadastrar </button>
 
-                        </div>
-                        
+                    </div>
+                    <div class="ui buttons">
+                        <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui  default button">voltar</a>
+                        <div class="or"></div>
+                        <button class="ui positive button" type="submit"  name="cadastrar" value="cadastrar"class=" ui  blue button" onclick="loading()">Cadastrar</button>
                     </div>
         </form>
         <?php } ?>

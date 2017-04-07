@@ -1,6 +1,6 @@
-<div class="ui one column doubling   container c ">
-    <h3 class="ui blue dividing header">Cadastrar Usuarios </h3>
-
+<div class="ui one column doubling   container  " style="padding-left: 10px">
+    <h3 class="ui blue dividing header">Cadastrar Acervo </h3>
+    
     <?php if ($alerta) { ?>
         <div class="ui message-<?php echo $alerta['class']; ?>">
             <?php echo $alerta['mensagem']; ?>
@@ -16,7 +16,7 @@
                     <div class=" field">
                         <label>Codigo</label>
                     </div>
-                    <div class="eight wide field">
+                    <div class="one wide field">
                         <input type="text"name="cod"  id="cod" placeholder="Codigo" value='' disabled="true">
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class=" field">
                         <label>Subtitulo</label>
                     </div>
-                    <div class=" ten wide field">
+                    <div class=" eight wide field">
                         <input type="text"name="subtitulo"  id="subtitulo" placeholder="SubTitulo" value=''>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                         <label>Editora</label>
                     </div>
                     <div class=" five wide field">
-                        <input type="text"name="editora"  id="editora" placeholder="Editora" value=''>
+                        <input type="text"name="editora"   id="editora" placeholder="Editora" value=''>
                     </div>
                 </div>
                 <div class="  inline eight  fields ">
@@ -139,7 +139,7 @@
                         <label>Data Publicação</label>
                     </div>
                     <div class=" two wide field">
-                        <input type="text"name="datapub"  id="datapub" placeholder="Data de Publicação" value=''>
+                        <input type="text" class="data" name="datapub" id="datapub" placeholder="00/00/0000" value=''>
                     </div>
                 </div>
                 <div class="  inline eight  fields ">
@@ -191,36 +191,19 @@
                 </div>
             </div>
         </div>
-        <script>
-            function loading() {
-                $("#load").addClass("loading");
-                setTimeout(function(){
-                    $("#load").removeClass("loading");
-                },1000);
-            }
-
-        </script>
 
 
         <div class="sixteen wide column">
             <div class="fields">
-                <div class="field">
-                    <a href="<?php echo base_url('dashboard'); ?>" type="submit" class=" mini ui  red button  ">voltar</a>
-                    <button type="submit"  name="cadastrar" value="cadastrar"class=" mini ui  blue   button ">Cadastrar </button>
 
-                </div>
+            </div>
+            <div class="ui buttons">
+                <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui  default button">voltar</a>
+                <div class="or"></div>
+                <button class="ui positive button" type="submit"  name="cadastrar" value="cadastrar"class=" ui  blue button" onclick="loading()">Cadastrar</button>
             </div>
 
         </div>
-    </div>
-</div>
-
-
-
-
-
-
-
 
 
 

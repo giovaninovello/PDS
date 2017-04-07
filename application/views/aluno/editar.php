@@ -62,14 +62,7 @@
                 </div>
             </div>
             <br>
-            <script>
-                function loading() {
-                    $("#load").addClass("loading");
-                    setTimeout(function(){
-                        $("#load").removeClass("loading");
-                    },1000);
-                }
-            </script>
+            
             <div class="sixteen wide column">
                 <div class="fields">
                     <div class="field">

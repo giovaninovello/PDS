@@ -20,7 +20,7 @@
                                 <select  name="metodo_form" id="metodo_form" class="  ui mini fluid dropdown">
                                     <option value="" selected="">Selecione</option>
                                     <?php foreach ($metodo as $m){?>
-                                        <option value="<?=$m['id']?>"><?=$m['classe'].'/'?><?=$m['metodo'];?></option>
+                                        <option value="<?=$m['id_metodo']?>"><?=$m['classe'].'/'?><?=$m['metodo'];?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -41,7 +41,7 @@
 
                     </div>
                 </div>
-                   
+
                     <div class="column">
                          <a href="<?php echo base_url('permissao/visualizar_todos'); ?>" type="submit" class="ui   blue button">Mostrar Todos</a>
                     </div>

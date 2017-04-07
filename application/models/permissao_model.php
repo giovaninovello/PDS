@@ -32,7 +32,6 @@ class Permissao_model extends CI_Model {
         }
 
    }
-
     //pega o item para jogar no combobox do cadastro de catalagos
     public function get_usuario() {
         $query = $this->db->get('usuarios');
@@ -43,14 +42,14 @@ class Permissao_model extends CI_Model {
             return false;
         }
     }
-
+    //crud
     public function cadastrar($dados){
 
         $this->db->insert('permissoes',$dados);
         return $this->db->affected_rows()?true:false;
 
     }
-
+    //listya usuario
     function get_permissao() {
 
         $this->db->select('*');
@@ -61,7 +60,7 @@ class Permissao_model extends CI_Model {
         return $query->result_array();
 
     }
-
+    //crud
     public function delete_permissao($id_permissao){
         $this->db->where('id_permissoes',$id_permissao);
         $this->db->delete('permissoes');
@@ -72,7 +71,7 @@ class Permissao_model extends CI_Model {
             return false;
         }
     }
-
+    //lista permissao
     public function get_permissao_id($id_metodo) {
         $this->db->where('id_permissoes', $id_metodo);
 
@@ -84,7 +83,7 @@ class Permissao_model extends CI_Model {
             return false;
         }
     }
-
+    //lista metodo
     public function get_metodo_editar($id_metodo) {
         $this->db->where('id_metodo', $id_metodo);
 
@@ -96,7 +95,7 @@ class Permissao_model extends CI_Model {
             return false;
         }
     }
-
+    //crud
     public function update_metodo($id_metodo,$metodo_atualizado){
         $this->db->where('id_metodo',$id_metodo);
         $this->db->update('metodos',$metodo_atualizado);

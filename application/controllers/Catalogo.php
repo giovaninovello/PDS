@@ -18,9 +18,9 @@ class Catalogo extends CI_Controller
     public  function cadastro(){
         $alerta = null;
         $this->load->model('catalago_model'); //chamo o model
-        $itemcatalago = $this->catalago_model->get_itemcatalago(); //retorno do model chamado com seu metodo
+        $itemcatalago = $this->catalago_model->get_doc(); //retorno do model chamado com seu metodo
         $cidadecatalago = $this->catalago_model->get_cidade(); //retorno do model chamado com seu metodo
-        $classificacaocatalago = $this->catalago_model->get_cla(); //retorno do model chamado com seu metodo
+        $classificacaocatalago = $this->catalago_model->get_classificacao(); //retorno do model chamado com seu metodo
 
         $this->load->model('autor_model');
         $autor = $this->autor_model->get_autor();//pega o autores no get select
@@ -36,7 +36,6 @@ class Catalogo extends CI_Controller
         );
         $this->load->view('template', $dados);
     }
-
 
     public function visualizar_todos()
 {
@@ -79,6 +78,9 @@ class Catalogo extends CI_Controller
             //regras de validacao
             $this->form_validation->set_rules('cuter', 'CUTTER', 'required');
             $this->form_validation->set_rules('titulo', 'TITULO', 'required');
+            $this->form_validation->set_rules('cid', 'CIDADE', 'required');
+            $this->form_validation->set_rules('classificacao', 'CLASSIFICACAO', 'required');
+            $this->form_validation->set_rules('tipo', 'TIPO', 'required');
 
             if ($this->form_validation->run() === true) {
 
@@ -111,7 +113,7 @@ class Catalogo extends CI_Controller
                     'nota_serie' => $this->input->post('nota_serie'),
                     'isbn' => $this->input->post('isbn'),
                     'editora' => $this->input->post('editora'),
-                    'data_public' => $this->input->post('datapub'),
+                    'data_public' => implode('-',array_reverse(explode('/',$this->input->post('datapub')))),
                     'observacoes' => $this->input->post('obs'),
                     'fasciculo' => $this->input->post('fasciculo'),
                     'Tipo_Documento_idtipo_documento' => $this->input->post('tipo'),
@@ -208,10 +210,7 @@ class Catalogo extends CI_Controller
 
 
                         }else {
-                            $alerta = array(
-                                "class" => "ui red message",
-                                "mensagem" => "O formulario  nao foi validado!<br>" . validation_errors()
-                            );
+                            $nome_imagem =  $item['nome_imagem'];
                         }
 
                         $dados_atualizado = array(
@@ -224,7 +223,7 @@ class Catalogo extends CI_Controller
                             'nota_serie' => $this->input->post('nota_serie'),
                             'isbn' => $this->input->post('isbn'),
                             'editora' => $this->input->post('editora'),
-                            'data_public' => $this->input->post('datapub'),
+                            'data_public' => implode('-',array_reverse(explode('/',$this->input->post('datapub')))),
                             'observacoes' => $this->input->post('obs'),
                             'fasciculo' => $this->input->post('fasciculo'),
                             'tipo_documento_idtipo_documento' => $this->input->post('tipo'),

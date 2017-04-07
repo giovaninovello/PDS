@@ -7,11 +7,28 @@
  
     <title>Dashboard- Index</title>
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css">
+    <script src="<?php echo base_url('assets/js/jquery.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.maskedinput.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/formata_campos.js')?>"></script>
 
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>-->
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/dataTables.semanticui.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.dataTables.css')?>">
+
+    <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/dataTables.semanticui.min.js')?>"></script>
+
+    
+
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/semantic/dist/semantic.min.css')?>">
+
+    <script src="<?php echo base_url('assets/js/datatables_main.js')?>"></script>
+
+
+
+
 
 
 

@@ -1,5 +1,5 @@
-<div class="ui  column  grid container center  " >
-    <div class="ui one column doubling  container  ">
+<div class="ui one column  grid container center  " >
+    <div class="ui two column doubling  container  ">
         <h3 class="ui blue dividing header"> Pesquisar </h3>
         <div class="ui form">
             <div class="inline fields">
@@ -50,10 +50,10 @@
                 </div>
             </div>
         </div>
-        <form action="<?= base_url()?>catalogo/pesquisar" method="post">
-            <div class="ui  form">
+        <div class="ui  form">
+            <form action="<?= base_url()?>catalogo/pesquisar" method="post">
                 <div class="column">
-                    <div class="fields ">
+                    <div class="inline fields ">
                         <div class=" ui right pointing blue label ">
                             Digite aqui sua pesquisa
                         </div>

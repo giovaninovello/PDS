@@ -20,9 +20,7 @@ class Tombo_model extends CI_Model {
             return false;
         }
     }
-
-
-//retorna as aquidições do item todos *
+    //retorna as aquidições do item todos *
     public function get_aqui() {
         $query = $this->db->get('aquisicao');
 
@@ -32,7 +30,7 @@ class Tombo_model extends CI_Model {
             return false;
         }
     }
-
+    //pesquisa ultimo exemplar para somar + 1 no tombo na hora de inserir
     public function get_ultimoexemplar($id_item){
 
         $this->db->select_max('tombo.exemplar');
@@ -51,6 +49,7 @@ class Tombo_model extends CI_Model {
         }
 
     }
+    //crud
     public function cadastrar_tombo($dados_tombo){
 
         $this->db->insert('tombo',$dados_tombo);

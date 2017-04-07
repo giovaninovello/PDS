@@ -1,39 +1,25 @@
 
-    <div class="ui one column doubling   container  ">
+    <div class="ui  column  container   ">
         <h3 class="ui blue dividing header">Cadastros Gerais </h3>
-
-
-        <div class="ui one column grid">
-            <div class="column">
-                <div class="ui ">
-                    <div class="ui raised segment"><a class="ui blue ribbon label"><i class="users large icon"></i><a  href="<?php echo base_url('usuario/cadastrar') ?>"<a class=""><b>Cadastros de Usuarios</b></a></a></div>
-                </div>
+        <div class="ui stackable grid ">
+            <div class="two wide column">
+                <a href="<?php echo base_url('catalogo/cadastro') ?>"><div class="ui  blue small button test ad" data-text=" Exemplares"></div></a>
             </div>
-            <div class="column">
-                <div class="ui ">
-                    <div class="ui raised segment"><a class="ui blue ribbon label"><i class="industry large icon"></i><a  href="<?php echo base_url('fornecedor/cadastrar') ?>"<a class=""><b>Cadastros de Fornecedores</b></a></a></div>
-                </div>
+            <div class="two wide column">
+                <a href="<?php echo base_url('fornecedor/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Fornecedores"></div></a>
             </div>
-            <div class="column">
-                <div class="ui ">
-                    <div class="ui raised segment"><a class="ui blue ribbon label"><i class="book large icon"></i><a  href="<?php echo base_url('catalogo/cadastro') ?>"<a class=""><b>Cadastros de Livros</b></a></a></div>
-                </div>
+            <div class="two wide column">
+                <a href="<?php echo base_url('usuario/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Usuarios"></div></a>
+            </div>
+            <div class="two wide column">
+                <a href="<?php echo base_url('aluno/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Alunos"></div></a>
             </div>
 
-            <div class="column">
-                <div class="ui ">
-                    <div class="ui raised segment"><a class="ui blue ribbon label"><i class="add user large icon"></i><a  href="<?php echo base_url('autor/cadastrar') ?>"<a class=""><b>Cadastros de Autores</b></a></a></div>
-                </div>
+            <div class="two wide column">
+                <a href="<?php echo base_url('autor/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Autores"></div></a>
             </div>
-            <div class="column">
-                <div class="ui ">
-                    <div class="ui raised segment"><a class="ui blue ribbon label"><i class="add user large icon"></i><a  href="<?php echo base_url('aluno/cadastrar') ?>"<a class=""><b>Cadastros de Alunos</b></a></a></div>
-                </div>
-            </div>
-
 
         </div>
-
 
     </div>
 
