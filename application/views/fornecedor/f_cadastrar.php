@@ -1,64 +1,62 @@
 
-    <div class="ui one column doubling   container  ">
-        <h3 class="ui blue dividing header">Cadastrar Fornecedores </h3>
-
-        <?php if ($alerta) { ?>
-            <div class="ui message-<?php echo $alerta['class']; ?>">
-                <?php echo $alerta['mensagem']; ?>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="box-body">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Cadastros de Fornecedores</h3>
+                <input type="hidden" name="captcha">
             </div>
-        <?php } ?>
-        <form action="<?php echo base_url('fornecedor/cadastrar'); ?>" method="post">
-            <input type="hidden" name="captcha">
-            <div class="ui  form  ">
-                <div class="ui one column grid">
-                    <div class="column">
-                        <div class=" inline eight  fields ">
-                            <div class="field">
-                                <label>Nome</label>
-                            </div>
-                            <div class="six wide field">
-                                <input type="text"name="nome"  id="nome" placeholder="Nome" value=''>
-                            </div>
-                        </div>
-                        <div class=" inline eight fields">
-                            <div class="field">
-                                <label>Endereço</label>
-                            </div>
-                            <div class="six wide field">
-                                <input type="text"name="endereco"  id="endereco" placeholder="Endereço" value=''>
-                            </div>
-                        </div>
-                        <div class="inline eight  fields">
-                            <div class="field">
-                                <label>Cidade</label>
-                            </div>
-                            <div class="three wide field">
-                                <input type="text" name="cidade"  id="cidade" placeholder="cidade" required="">
-                            </div>
-                        </div>
 
+            <?php if ($alerta) { ?>
+                <div class=" alert alert-success-<?php echo $alerta['class']; ?>">
+                    <?php echo $alerta['mensagem']; ?>
+                </div>
+            <?php } ?>
+
+            <!-- Horizontal Form -->
+
+            <form class="form-horizontal" action="<?php echo base_url('fornecedor/cadastrar'); ?>" method="post">
+                <div class="col-md-6">
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="cod" class="col-sm-2 control-label">Nome</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="nome"  name="nome" placeholder="Nome">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cuter" class="col-sm-2 control-label">Endereço</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
+                            </div>
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Cidade</label>
+
+                            <!-- select -->
+                            <div class="col-sm-5">
+                                <select class="form-control" name="cid" id="cid">
+                                    <option value="" selected="">Selecione</option>
+                                    <?php foreach ($cid as $cidade){?>
+                                        <option value="<?=$cidade['idcidade']?>"> <?=$cidade['nome'];?> </option>
+                                    <?php } ?>
+                                </select>
+                                <span class="help-block">Campo Obrigatório</span>
+                            </div>
+                        </div>
+                            <button type="reset" class="btn btn-danger  btn-flat">Cancelar</button>
+                            <button type="submit" name="cadastrar"value="cadastrar" class="btn btn-success  btn-flat">Cadastar</button>
 
                     </div>
                 </div>
-
-                <div class="sixteen wide column">
-                    <div class="fields">
-
-                    </div>
-                    <div class="ui buttons">
-                        <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui  default button">voltar</a>
-                        <div class="or"></div>
-                        <button class="ui positive button" type="submit"  name="cadastrar" value="cadastrar"class=" ui  blue button" onclick="loading()">Cadastrar</button>
-                    </div>
-        </form>
+    <!-- /.box-body -->
+    <div class="box-footer">
 
     </div>
-
-
-
-
-
-
-
-     
-
+    <!-- /.box-footer -->
+    </form>
+    </div>

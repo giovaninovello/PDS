@@ -17,6 +17,8 @@ class Cadastros extends CI_Controller
     
     public function form_cad_geral()
     {
+        
+
         $dados = array(
             "view" => 'cadastros/form_cad_geral'
         );

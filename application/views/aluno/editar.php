@@ -1,75 +1,60 @@
 
-<div class="ui one column doubling   container  ">
-    <h2 class="ui blue dividing header">Editar Usuarios </h2>
-
-    <?php if ($alerta) { ?>
-        <div class="ui message-<?php echo $alerta['class']; ?>">
-            <?php echo $alerta['mensagem']; ?>
-        </div>
-    <?php } ?>
-
-    <?php if ($usuario) { ?>
-        <form action="<?php echo base_url('usuario/editar/' . $usuario['idusuarios']); ?>" method="post">
-            <input type="hidden" name="captcha">
-            <input type="hidden" name="id_usuario" value="<?php echo $usuario['idusuarios']; ?>">
-            <div class="ui form ">
-                <div class="ui one column grid">
-                    <di class="column">
-                        <div class=" inline eight  fields ">
-                            <div class="field">
-                                <label>Nome</label>
-                            </div>
-                            <div class="six wide field">
-                                <input type="text"name="nome"  id="nome" placeholder="Nome" value='<?php echo $usuario['nome']; ?>'>
-                            </div>
-                        </div>
-                        <div class=" inline eight fields">
-                            <div class="field">
-                                <label>Email</label>
-                            </div>
-                            <div class="six wide field">
-                                <input type="text"name="email"  id="email" placeholder="Email" value='<?php echo $usuario['email']; ?>'>
-                            </div>
-                        </div>
-                        <div class="inline eight  fields">
-                            <div class="field">
-                                <label>Senha</label>
-                            </div>
-                            <div class="three wide field">
-                                <input type="password" name="senha" class="form-control" id="email" placeholder="senha" required="">
-                            </div>
-                        </div>
-                        <div class=" inline eight  fields">
-                            <div class="five field">
-                                <label>Confirmar Senha</label>
-                            </div>
-                            <div class="three wide field">
-                                <input type="password" name="confirmar_senha"class="form-control" id="confirmar_senha" placeholder="Confirmar senha" required="">
-                            </div>
-                        </div>
-                        <div class=" inline eight fields">
-                            <div class="field">
-                                <label>Tipo de Usuario</label>
-                            </div>
-                            <div class="three wide field">
-                                <select  name="tipo" id="tipo" class="ui fluid dropdown">
-                                    <option value="0" >Selecione o tipo de Usuario</option>
-                                    <option value="1"> Administrador </option>
-                                    <option value="2"> Usuário </option>
-                                </select
-                            </div>
-                        </div>
-                </div>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="box-body">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Edicao de Alunos</h3>
+                <input type="hidden" name="captcha">
             </div>
-            <br>
-            
-            <div class="sixteen wide column">
-                <div class="fields">
-                    <div class="field">
-                        <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui mini red button">voltar</a>
-                        <button type="submit"  name="editar" value="editar"class="ui mini primary   button" onclick="loading()">Finalizar Edição </button>
-                    </div>
+
+            <?php if ($alerta) { ?>
+                <div class=" alert alert-success-<?php echo $alerta['class']; ?>">
+                    <?php echo $alerta['mensagem']; ?>
                 </div>
-        </form>
-    <?php } ?>
-</div>
+            <?php } ?>
+
+            <!-- Horizontal Form -->
+            <?php if ($usuario ) { ?>
+            <form class="form-horizontal" <?php echo form_open_multipart('aluno/editar/' . $usuario['idaluno']); ?>
+            <input type="hidden" name="id_aluno" value="<?php echo $usuario['idaluno']; ?>">
+            <div class="col-md-6">
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="cod" class="col-sm-2 control-label">Nome</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="nome"  name="nome" value='<?php echo $usuario['nome_aluno']; ?>'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="serie" class="col-sm-2 control-label">Serie</label>
+
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="serie" name="serie" value='<?php echo $usuario['serie_aluno']; ?>'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="turma" class="col-sm-2 control-label">Turma</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="turma" name="turma" value='<?php echo $usuario['turma_aluno']; ?>'>
+                            </div>
+                        </div>
+                        <button type="reset" class="btn btn-danger  btn-flat">Cancelar</button>
+                        <button type="submit" name="editar"  value="editar" class="btn btn-success  btn-flat">Salvar Alterações</button>
+
+                    </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                                <!-- /.box-footer -->
+                </form>
+                <?php } ?>
+            </div>

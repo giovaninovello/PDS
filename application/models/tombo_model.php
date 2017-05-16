@@ -57,4 +57,85 @@ class Tombo_model extends CI_Model {
 
     }
 
+    public function delete_tombo($id){
+        $this->db->where('idtombo',$id);
+        $this->db->delete('tombo');
+
+        if($this->db->affected_rows()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function get_tombo_delete($id) {
+        $this->db->where('idtombo', $id);
+
+        $tombo = $this->db->get('tombo');
+
+        if ($tombo->num_rows()) {
+            return $tombo->row_array();
+        } else {
+            return false;
+        }
+    }
+    //pesquisa pelo tombo
+    public function get_tombo_like($termo) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->like('catalago.titulo', $termo);
+        $this->db->where('locado',"N");
+
+
+        $query= $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_tombo_id($id_item) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->where('idtombo', $id_item);
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->row_object();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_emprestimos($id) {
+        $this->db->select('*');
+        $this->db->from('emprestimo e');
+        $this->db->join('tombo t','t.idtombo = e.id_tombo');
+        $this->db->where('idtombo', $id);
+        $this->db->where('locado','S');
+        $this->db->where('status','PE');
+
+        $query= $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_tombo_id_dev($id_item) {
+        $this->db->select('*');
+        $this->db->from('catalago c');
+        $this->db->join('tombo t','t.catalago_idcatalago = c.idcatalago');
+        $this->db->join('emprestimo e','e.id_tombo = t.idtombo');
+        $this->db->join('aluno a','a.idaluno = e.aluno_idaluno');
+        $this->db->where('e.id_tombo', $id_item);
+        $this->db->where('locado','S');
+        $this->db->where('status','PE');
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->row_object();
+        } else {
+            return false;
+        }
+    }
+
+
+
 }

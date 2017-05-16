@@ -14,13 +14,13 @@
                     <div class="column">
                         <div class=" inline five  fields ">
                             <div class="field">
-                                <label>Classe/Metodo</label>
+                                <label>Menu</label>
                             </div>
                             <div class="eight wide field">
                                 <select  name="metodo_form" id="metodo_form" class="  ui mini fluid dropdown">
                                     <option value="" selected="">Selecione</option>
                                     <?php foreach ($metodo as $m){?>
-                                        <option value="<?=$m['id_metodo']?>"><?=$m['classe'].'/'?><?=$m['metodo'];?></option>
+                                        <option value="<?=$m['id_metodo']?>"><?=$m['identificacao'];?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -46,14 +46,7 @@
                          <a href="<?php echo base_url('permissao/visualizar_todos'); ?>" type="submit" class="ui   blue button">Mostrar Todos</a>
                     </div>
                 <br>
-                <script>
-                    function loading() {
-                        $("#load").addClass("loading");
-                        setTimeout(function(){
-                            $("#load").removeClass("loading");
-                        },1000);
-                                            }
-                </script>
+
                 <div class="sixteen wide column">
                     <div class="fields">
 

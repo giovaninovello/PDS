@@ -21,6 +21,8 @@ class Catalogo extends CI_Controller
         $itemcatalago = $this->catalago_model->get_doc(); //retorno do model chamado com seu metodo
         $cidadecatalago = $this->catalago_model->get_cidade(); //retorno do model chamado com seu metodo
         $classificacaocatalago = $this->catalago_model->get_classificacao(); //retorno do model chamado com seu metodo
+        $this->load->model('escola_model');
+        $escola = $this->escola_model->get_escolas();
 
         $this->load->model('autor_model');
         $autor = $this->autor_model->get_autor();//pega o autores no get select
@@ -31,6 +33,8 @@ class Catalogo extends CI_Controller
             "cid" => $cidadecatalago,
             "cla"=>$classificacaocatalago,
             "aut"=>$autor,
+            "escola"=>$escola,
+            "modal"=>false,
             "view" => 'catalogo/cadastrar'
 
         );
@@ -56,20 +60,26 @@ class Catalogo extends CI_Controller
 
     public function pesquisar(){
 
+        $alerta=null;
         $termo = $this->input->post('pesquisar');
         $this->load->model('catalago_model'); //chamo o model
         $catalago = $this->catalago_model->get_catalogo_like($termo); //retorno do model chamado com seu metodo
 
+            $dados = array(
+                "catalogo" => $catalago,
+                "alerta" => $alerta,
+                "view" => 'catalogo/visualizar_todos'
+            );
 
-        $dados = array(
-            "catalogo" => $catalago,
-            "view" => 'catalogo/visualizar_todos'
-        );
-        $this->load->view('template', $dados);
+            $this->load->view('template', $dados);
+
+
     }
 
     public function cadastrar()
     {
+        
+        
         //inicializa a variacvel alerta como null
         $alerta = null;
         //verifica se o input do form é igual a cadastrar senao for redireciona para cadastro
@@ -97,7 +107,7 @@ class Catalogo extends CI_Controller
 
                 }else {
                     $alerta = array(
-                        "class" => "ui red message",
+                        "class" => "alert alert-danger",
                         "mensagem" => "O Livro  nao foi cadastrado!<br>" . validation_errors()
                     );
                 }
@@ -140,24 +150,25 @@ class Catalogo extends CI_Controller
                 //verifica  se cadastrou os dois dados com sucesso e da a mensgem de sucesso!!
                 if ($cadastrou && $cadastrou2) {
                     $alerta = array(
-                        "class" => "ui green message",
+                        "class" => "alert alert-success",
                         "mensagem" => "O Livro foi cadastrado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
-                        "class" => "ui red message",
+                        "class" => "alert alert-danger",
                         "mensagem" => "O Livro  nao foi cadastrado!<br>" . validation_errors()
                     );
                 }
             } else {
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => "O Livro  nao foi validado!<br>" . validation_errors()
                 );
             }
         }
         $dados = array(
             "alerta" => $alerta,
+            "modal"=>true,
             "view" => 'catalogo/cadastrar'
 
 
@@ -241,20 +252,20 @@ class Catalogo extends CI_Controller
                         if ($atualizou) {
                             $inicio=false;
                             $alerta = array(
-                                "class" => "ui green message",
+                                "class" => "alert alert-success",
                                 "mensagem" => "O Item foi atualizado com sucesso!<br>" . validation_errors(),
                                 "view" => 'catalogo/visualizar_item',
                             );
                         } else {
                             $alerta = array(
-                                "class" => "ui red message",
+                                "class" => "alert alert-danger",
                                 "mensagem" => "O Item  nao foi atualizado!<br>" . validation_errors()
                             );
                         }
                     } else {
                         //formaulario invalido
                         $alerta = array(
-                            "class" => "ui red message",
+                            "class" => "alert alert-danger",
                             "mensagem" => "Atençao o formulario nao  foi validado!<br>" . validation_errors()
                         );
                     }
@@ -262,7 +273,7 @@ class Catalogo extends CI_Controller
             } else {
 
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => "Atençao o Item nao esta cadastrado!<br>" . validation_errors()
                 );
             }
@@ -332,11 +343,14 @@ class Catalogo extends CI_Controller
             "catalogo" => $catalagos,
             "view" => 'catalogo/exemplares'
         );
+
         $this->load->view('template', $dados);
 
     }
 
     public  function pesquisa_cat(){
+
+
         $alerta = null;
 
         $dados = array(
@@ -386,6 +400,8 @@ class Catalogo extends CI_Controller
 
         }
     }
+
+   
 
 
 }

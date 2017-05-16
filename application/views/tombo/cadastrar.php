@@ -1,69 +1,68 @@
 
-    <div class="ui one column doubling   container  ">
-        <h3 class="ui blue dividing header">Tombar Item </h3>
-
-        <?php if ($alerta) { ?>
-            <div class="ui message-<?php echo $alerta['class']; ?>">
-                <?php echo $alerta['mensagem']; ?>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="box-body">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Cadastros de Tombos</h3>
+                <input type="hidden" name="captcha">
             </div>
-        <?php } ?>
-        <?php if ($cat ) { ?>
-        <form action="<?php echo base_url('tombo/cadastrar/' .$cat); ?>" method="post">
-            <input type="hidden" name="captcha">
-            <div class="ui  form  ">
-                <div class="ui one column grid">
-                    <div class="column">
-                        <div class=" inline eight  fields ">
-                            <div class="field">
-                                <label>Id_Exemplar</label>
+                <?php if ($cat ) { ?>
+                <form class="form-horizontal" <?php echo form_open_multipart('tombo/cadastrar/' .$cat); ?>
+                <div class="col-md-8">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="cod" class="col-sm-2 control-label">Id Exemplar</label>
+
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="id"  name="id" placeholder="" value='<?php echo $cat; ?>' disabled="">
                             </div>
-                            <div class="two wide field">
-                                <input type="text"name="id"  id="id" placeholder="" value='<?php echo $cat; ?>' disabled="">
+
+                        </div>
+                        <div class="form-group has-error">
+                            <label for="cod" class="col-sm-2 control-label">Tombo</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="tbo"  name="tbo" placeholder="Numero do Tombo" required="required">
+                                <span class="help-block">Campo Obrigatório</span>
                             </div>
                         </div>
-                        <div class=" inline eight  fields ">
-                            <div class="field">
-                                <label>Tombo</label>
+                        <div class="form-group has-error">
+                            <label for="cod" class="col-sm-2 control-label">Data</label>
+
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" id="data"  name="data" placeholder="Data" value='<?php echo $data; ?>'>
+                                <span class="help-block">Campo Obrigatório</span>
                             </div>
-                            <div class="two wide field">
-                                <input type="text"name="tbo"  id="tbo" placeholder="Numero do Tombo" value=''>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="cod" class="col-sm-2 control-label">Exemplar</label>
+
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="exemplar"  name="exemplar" value='<?php echo $exemplar['exemplar']+1; ?>'>
                             </div>
                         </div>
-                        <div class=" inline eight fields">
-                            <div class="field">
-                                <label>Data</label>
-                            </div>
-                            <div class="two wide field">
-                                <input type="text"name="data"  id="data" placeholder="Data" value='<?php echo $data; ?>'>
-                            </div>
-                        </div>
-                        <div class="inline eight  fields">
-                            <div class="field">
-                                <label>Exemplar</label>
-                            </div>
-                            <div class="one wide field">
-                                <input type="text" name="exemplar"  id="exemplar" value='<?php echo $exemplar['exemplar']+1; ?>'>
-                            </div>
-                        </div>
-                        <div class=" inline eight  fields">
-                            <div class="five field">
-                                <label>Fornecedor</label>
-                            </div>
-                            <div class="three wide field">
-                                <select  name="fornecedor" id="fornecedor" class="  ui mini fluid dropdown">
+                        <div class="form-group">
+                            <label for="fornecedor" class="col-sm-2 control-label">Fornecedor</label>
+
+                            <!-- select -->
+                            <div class="col-sm-6">
+                                <select class="form-control" name="fornecedor" id="fornecedor">
                                     <option value="" selected="">Selecione</option>
                                     <?php foreach ($forn as $fornecedor){?>
-                                        <option value="<?=$fornecedor['idfornecedor']?>"> <?=$fornecedor['endereco_f'];?> </option>
+                                        <option value="<?=$fornecedor['idfornecedor']?>"> <?=$fornecedor['nome_f'];?> </option>
                                     <?php } ?>
                                 </select>
                             </div>
                         </div>
-                        <div class=" inline eight fields">
-                            <div class="field">
-                                <label>Tipo de Aquisicao</label>
-                            </div>
-                            <div class="three wide field">
-                                <select  name="classificacao" id="classificacao" class="  ui mini fluid dropdown">
+
+                        <div class="form-group">
+                            <label for="aquisicao" class="col-sm-2 control-label">Tipo da Aquisição</label>
+
+                            <!-- select -->
+                            <div class="col-sm-6">
+                                <select class="form-control" name="classificacao" id="classificacao">
                                     <option value="" selected="">Selecione</option>
                                     <?php foreach ($aqui as $aquisicao){?>
                                         <option value="<?=$aquisicao['idaquisicao']?>"> <?=$aquisicao['descricao_aqui'];?> </option>
@@ -71,35 +70,30 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="aquisicao" class="col-sm-2 control-label">Escola</label>
+
+                            <!-- select -->
+                            <div class="col-sm-6">
+                                <select class="form-control" name="escola" id="escola">
+                                    <option value="" selected="">Selecione</option>
+                                    <?php foreach ($esc as $escola){?>
+                                        <option value="<?=$escola['idescola']?>"> <?=$escola['nome_escola'];?> </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="reset" class="btn btn-danger  btn-flat">Cancelar</button>
+                        <button type="submit"  name="cadastrar" value="cadastrar" class="btn btn-success  btn-flat">Cadastar</button>
+
                     </div>
+                    <?php } ?>
                 </div>
-                <br>
-                <script>
-                    function loading() {
-                        $("#load").addClass("loading");
-                        setTimeout(function(){
-                            $("#load").removeClass("loading");
-                        },1000);
-                                            }
-                </script>
-                <div class="sixteen wide column">
-                    <div class="fields">
-
-                    </div>
-                    <div class="ui buttons">
-                        <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui  default button">voltar</a>
-                        <div class="or"></div>
-                        <button class="ui positive button" type="submit"  name="cadastrar" value="cadastrar"class=" ui  blue button" onclick="loading()">Cadastrar</button>
-                    </div>
-        </form>
-        <?php } ?>
-    </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
 
 
-
-
-
-
-
-     
-
+                </div>
+            </form>
+        </div>

@@ -191,6 +191,18 @@ class Catalago_model extends CI_Model {
         }
     }
 
+    public function get_catalago_count() {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $query= $this->db->get();
+
+        if ($query->num_rows()) {
+             return $query->num_rows();
+        } else {
+            return false;
+        }
+    }
+
 
 
 }

@@ -17,6 +17,8 @@ class Visualizacoes extends CI_Controller
     
     public function form_visualizar_geral()
     {
+       
+
         $dados = array(
             "view" => 'visualizacoes/form_visualizar_geral'
         );

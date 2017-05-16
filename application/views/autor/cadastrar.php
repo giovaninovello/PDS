@@ -1,77 +1,42 @@
-<div class="ui one column doubling   container c ">
-    <h3 class="ui blue dividing header">Cadastrar Autores </h3>
 
-    <?php if ($alerta) { ?>
-        <div class="ui message-<?php echo $alerta['class']; ?>">
-            <?php echo $alerta['mensagem']; ?>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="box-body">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Cadastros de Autores</h3>
+                <input type="hidden" name="captcha">
+            </div>
+            <?php if ($alerta) { ?>
+                <div class=" alert alert-<?php echo $alerta['class']; ?>">
+                    <?php echo $alerta['mensagem']; ?>
+                </div>
+            <?php } ?>
+
+            <form class="form-horizontal" action="<?php echo base_url('autor/cadastrar'); ?>" method="post">
+                <div class="col-md-6">
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="cod" class="col-sm-2 control-label">Nome</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="nome"  name="nome" placeholder="Nome" required="required">
+                            </div>
+                        </div>
+
+                        <button type="reset" class="btn btn-danger  btn-flat">Cancelar</button>
+                        <button type="submit" name="cadastrar" value="cadastrar" class="btn btn-success  btn-flat">Cadastar</button>
+
+                    </div>
+                </div>
+
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+
+
+                    <!-- /.box-footer -->
+            </form>
         </div>
-    <?php } ?>
-
-    <?php echo form_open_multipart('autor/cadastrar'); ?>
-    <input type="hidden" name="captcha">
-    <div class="ui  form ">
-        <div class="ui one column grid">
-            <div class="column">
-                <div class=" inline eight fields ">
-                    <div class=" field">
-                        <label>Codigo</label>
-                    </div>
-                    <div class="two wide field">
-                        <input type="text"name="cod"  id="cod" placeholder="Codigo" value='' disabled="true">
-                    </div>
-                </div>
-                <div class="  inline eight fields ">
-                    <div class="required  field">
-                        <label>Nome</label>
-                    </div>
-                    <div class="eight wide  field">
-                        <input type="text"name="nome"  id="nome" placeholder="Nome" value=''>
-                    </div>
-                </div>
-
-        </div>
-        <script>
-            function loading() {
-                $("#load").addClass("loading");
-                setTimeout(function(){
-                    $("#load").removeClass("loading");
-                },1000);
-            }
-
-        </script>
-
-
-            <div class="sixteen wide column">
-                <div class="fields">
-
-                </div>
-                <div class="ui buttons">
-                    <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="ui  default button">voltar</a>
-                    <div class="or"></div>
-                    <button class="ui positive button" type="submit"  name="cadastrar" value="cadastrar"class=" ui  blue button" onclick="loading()">Cadastrar</button>
-                </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

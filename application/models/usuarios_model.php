@@ -11,9 +11,10 @@ class Usuarios_model extends CI_Model {
         //definido parametro from
         $this->db->from('usuarios');
         //definindo paramentro where
-        $this->db->where('email', $email);
-        $this->db->where('senha', $senha);
+        $this->db->where('usuarios.email', $email);
+        $this->db->where('usuarios.senha', $senha);
         //execurando query no banco
+
         $usuarios = $this->db->get();
 
         if ($usuarios->num_rows()) {
@@ -23,6 +24,8 @@ class Usuarios_model extends CI_Model {
             return false;
         }
     }
+
+
     //PEGA TODOS OS UAURIOS LISTA SEM PARAMETROS
     public function get_usuarios() {
         $query = $this->db->get('usuarios'); //select * from usuarios
@@ -50,7 +53,6 @@ class Usuarios_model extends CI_Model {
     //PEGA ID DO USUARIO COM PARAMATRO
     public function get_usuario($id_usuario) {
         $this->db->where('idusuarios', $id_usuario);
-
         $usuario = $this->db->get('usuarios');
 
         if ($usuario->num_rows()) {

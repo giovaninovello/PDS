@@ -32,6 +32,20 @@ class Fornecedor extends CI_Controller
         $this->load->view('template', $dados);
     }
 
+    public  function cadastro(){
+        $alerta = null;
+        $this->load->model('cidade_model'); //chamo o model
+        $cidade = $this->cidade_model->get_cidade(); //retorno do model chamado com seu metodo
+
+        $dados = array(
+            "alerta"=>$alerta,
+            "cid" => $cidade,
+            "view" => 'fornecedor/f_cadastrar'
+
+        );
+        $this->load->view('template', $dados);
+    }
+
     public function cadastrar()
     {
         $alerta = null;
@@ -51,18 +65,18 @@ class Fornecedor extends CI_Controller
                 $cadastrou = $this->fornecedores_model->create_fornecedor($dados_fornecedor);
                 if ($cadastrou) {
                     $alerta = array(
-                        "class" => "ui green message",
+                        "class" => "alert alert-success",
                         "mensagem" => "Fornecedor foi cadastrado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
-                        "class" => "ui red message",
+                        "class" => "alert alert-danger",
                         "mensagem" => "Fornecedor  nao foi cadastrado!<br>" . validation_errors()
                     );
                 }
             } else {
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => " Fornecedor  nao foi atualizado!<br>" . validation_errors()
                 );
             }
@@ -74,51 +88,51 @@ class Fornecedor extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-    public function editar($id_usuario)
+    public function editar($id)
     {
         $alerta = null;
-        $id_usuario = (int)$id_usuario;
-        if ($id_usuario) {
-            $this->load->model('usuarios_model');
-            $existe = $this->usuarios_model->get_usuario($id_usuario);
+        $id = (int)$id;
+        if ($id) {
+            $this->load->model('fornecedores_model');
+            $existe = $this->fornecedores_model->get_fornecedor($id);
 
             if ($existe) {
                 $usuario = $existe;
                 if ($this->input->post('editar') === 'editar') {
                     if ($this->input->post('captcha')) redirect('conta/entrar');
 
-                    $id_usuario_form = (int)$this->input->post('id_usuario');
-                    if ($id_usuario !== $id_usuario_form) redirect('conta/entrar');
+                    $id_usuario_form = (int)$this->input->post('id_fornecedor');
+                    if ($id !== $id_usuario_form) redirect('conta/entrar');
                     //definir regras de validação
-                    $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email');
-                    $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[3]|max_length[20]');
-                    $this->form_validation->set_rules('confirmar_senha', 'CONFIRMAR_SENHA', 'required|min_length[3]|max_length[20]|matches[senha]');
+                    $this->form_validation->set_rules('nome', 'NOME', 'required');
+                    $this->form_validation->set_rules('cidade', 'CIDADE', 'required');
+
                     //verificar se as regra sao atendidas
                     if ($this->form_validation->run() === true) {
                         $usuario_atualizado = array(
-                            'nome' => $this->input->post('nome'),
-                            'email' => $this->input->post('email'),
-                            'senha' => $this->input->post('senha'),
-                            'tipo_usu' => $this->input->post('tipo')
+                            'nome_f' => $this->input->post('nome'),
+                            'endereco_f' => $this->input->post('endereco'),
+                            'cidade_f' => $this->input->post('cidade')
+
 
                         );
-                        $atualizou = $this->usuarios_model->update_usuario($this->input->post('id_usuario'), $usuario_atualizado);
+                        $atualizou = $this->fornecedores_model->update_fornecedor($this->input->post('id_fornecedor'), $usuario_atualizado);
 
                         if ($atualizou) {
                             $alerta = array(
-                                "class" => "ui green message",
-                                "mensagem" => "O usuario foi atualizado com sucesso!<br>" . validation_errors()
+                                "class" => "alert alert-success",
+                                "mensagem" => "O fornecedor foi atualizado com sucesso!<br>" . validation_errors()
                             );
                         } else {
                             $alerta = array(
-                                "class" => "ui red message",
-                                "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
+                                "class" => "alert alert-danger",
+                                "mensagem" => "O fornecedor  nao foi atualizado!<br>" . validation_errors()
                             );
                         }
                     } else {
                         //formaulario invalido
                         $alerta = array(
-                            "class" => "ui red message",
+                            "class" => "alert alert-danger",
                             "mensagem" => "Atençao o formulario nao  foi validado!<br>" . validation_errors()
                         );
                     }
@@ -126,59 +140,59 @@ class Fornecedor extends CI_Controller
             } else {
                 $usuario = false;
                 $alerta = array(
-                    "class" => "ui red message",
-                    "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
+                    "class" => "alert alert-danger",
+                    "mensagem" => "Atençao o fornecedor nao esta cadastrado!<br>" . validation_errors()
                 );
             }
         } else {
             $alerta = array(
                 "class" => "ui red message",
-                "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
+                "mensagem" => "Atençao o fornecedor informado esta incorreto!<br>" . validation_errors()
             );
         }
         $dados = array(
             "alerta" => $alerta,
             "usuario" => $usuario,
-            "view" => 'usuario/editar'
+            "view" => 'fornecedor/editar'
         );
         $this->load->view('template', $dados);
     }
 
-    public function deletar($id_usuario)
+    public function deletar($id)
     {
         $alerta = null;
-        $id_usuario = (int)$id_usuario;
-        if ($id_usuario) {
-            $this->load->model('usuarios_model');
-            $existe = $this->usuarios_model->get_usuario($id_usuario);
+        $id = (int)$id;
+        if ($id) {
+            $this->load->model('fornecedores_model');
+            $existe = $this->fornecedores_model->get_fornecedor($id);
             if ($existe) {
-                $deletou = $this->usuarios_model->delete_usuario($id_usuario);
+                $deletou = $this->fornecedores_model->delete_fornecedor($id);
                 if ($deletou) {
                     $alerta = array(
                         "class" => "success",
-                        "mensagem" => "O usuario foi deletado com sucesso!<br>" . validation_errors()
+                        "mensagem" => "O fornecedor foi deletado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
                         "class" => "danger",
-                        "mensagem" => "O usuario  nao foi deletado!<br>" . validation_errors()
+                        "mensagem" => "O fornedcedor  nao foi deletado!<br>" . validation_errors()
                     );
                 }
                 $dados = array(
                     "alerta" => $alerta,
-                    "view" => 'usuario/deletar'
+                    "view" => 'fornecedor/deletar'
                 );
                 $this->load->view('template', $dados);
             } else {
                 $alerta = array(
-                    "class" => "ui red message",
-                    "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
+                    "class" => "alert alert-danger",
+                    "mensagem" => "Atençao o fornecedor nao esta cadastrado!<br>" . validation_errors()
                 );
             }
         } else {
             $alerta = array(
-                "class" => "ui red message",
-                "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
+                "class" => "alert alert-danger",
+                "mensagem" => "Atençao o fornedcedor informado esta incorreto!<br>" . validation_errors()
             );
 
         }

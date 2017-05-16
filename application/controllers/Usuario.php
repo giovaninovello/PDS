@@ -15,20 +15,9 @@ class Usuario extends CI_Controller
         }
 
     }
-    public function loading()
-    {
-        $dados = array(
-            "view" => 'includes/loading'
-        );
-        $this->load->view('template', $dados);
-    }
-
-
+    
     public function visualizar_todos()
     {
-
-        $f = new Auth();
-        $f->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
 
 
         $alerta = null;
@@ -47,21 +36,9 @@ class Usuario extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-    public function relatoriousuario(){
-        $this->load->model('usuarios_model');
-        $usuarios=$this->usuarios_model->get_usuarios();
-
-        $dados =array(
-            "usuarios"=>$usuarios,
-            "view"=>'usuario/relatoriousuarios'
-        );
-        $this->load->view('template', $dados);
-    }
-
     public function cadastrar()
     {
-        $f = new Auth();
-        $f->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
+       
 
 
         $alerta = null;
@@ -84,19 +61,19 @@ class Usuario extends CI_Controller
                 if ($cadastrou) {
 
                     $alerta = array(
-                        "class" => "ui green message",
+                        "class" => "alert alert-success",
                         "mensagem" => "O usuario foi cadastrado com sucesso!<br>" . validation_errors()
                     );
                     
                 } else {
                     $alerta = array(
-                        "class" => "ui red message",
+                        "class" => "alert alert-danger",
                         "mensagem" => "O usuario  nao foi cadastrado!<br>" . validation_errors()
                     );
                 }
             } else {
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
                 );
             }
@@ -141,19 +118,19 @@ class Usuario extends CI_Controller
 
                     if ($atualizou) {
                         $alerta = array(
-                            "class" => "ui green message",
+                            "class" => "alert alert-success",
                             "mensagem" => "O usuario foi atualizado com sucesso!<br>" . validation_errors()
                         );
                     } else {
                         $alerta = array(
-                            "class" => "ui red message",
+                            "class" => "alert alert-danger",
                             "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
                         );
                     }
                 } else {
                     //formaulario invalido
                     $alerta = array(
-                        "class" => "ui red message",
+                        "class" => "alert alert-danger",
                         "mensagem" => "Atençao o formulario nao  foi validado!<br>" . validation_errors()
                     );
                 }
@@ -161,13 +138,13 @@ class Usuario extends CI_Controller
         } else {
             $usuario = false;
             $alerta = array(
-                "class" => "ui red message",
+                "class" => "alert alert-danger",
                 "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
             );
         }
     } else {
         $alerta = array(
-            "class" => "ui red message",
+            "class" => "alert alert-danger",
             "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
         );
     }
@@ -281,71 +258,19 @@ class Usuario extends CI_Controller
                 $this->load->view('template', $dados);
             } else {
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
                 );
             }
         } else {
             $alerta = array(
-                "class" => "ui red message",
+                "class" => "alert alert-danger",
                 "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
             );
 
         }
     }
-
-    public function pdf()
-    {
-
-
-        $mpdf = new mPDF();
-
-        $html = $this->load->view('templaterel', $this->visualizar_todos(), true);
-
-        $mpdf->SetHeader($this->getHeader());
-
-        $mpdf->SetFooter($this->getFooter());
-
-        $mpdf->writeHTML($html);
-
-        $mpdf->AddPage();
-
-        $mpdf->WriteHTML('<p><b>Minha nova página no arquivo PDF</b></p>');
-
-        $mpdf->Output();
-
-        $dados = array(
-            "view" => 'usuario/pdf',
-
-        );
-        $this->load->view('templaterel', $dados);
-    }
-    /*
-    * Método para montar o cabeça do relatório em PDF
-    */
-    protected function getHeader(){
-        $data = date('j/m/Y');
-        $retorno = "<table class=\"tbl_header\" width=\"1000\">  
-               <tr>  
-                 <td align=\"left\">Biblioteca mPDF</td>  
-                 <td align=\"right\">Gerado em: $data</td>  
-               </tr>  
-             </table>";
-        return $retorno;
-    }
-
-    /*
-    * Método para montar o Rodapé do relatório em PDF
-    */
-    protected function getFooter(){
-        $retorno = "<table class=\"tbl_footer\" width=\"1000\">  
-               <tr>  
-                 <td align=\"right\">Página: {PAGENO}</td>  
-               </tr>  
-             </table>";
-        return $retorno;
-    }
-
+    
     public function permissao(){
 
 

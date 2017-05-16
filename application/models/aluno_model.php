@@ -35,21 +35,20 @@ class Aluno_model extends CI_Model {
     }
    
     //PEGA ID DO USUARIO COM PARAMATRO
-    public function get_usuario($id_usuario) {
-        $this->db->where('idusuarios', $id_usuario);
+    function get_aluno_like($termo) {
 
-        $usuario = $this->db->get('usuarios');
+        $this->db->select('*');
+        $this->db->from('aluno');
+        $this->db->like('nome_aluno', $termo);
+        $query= $this->db->get();
+        return $query->result_array();
 
-        if ($usuario->num_rows()) {
-            return $usuario->row_array();
-        } else {
-            return false;
-        }
     }
+
     //UPDATE CRUD
-    public function update_usuario($id_usuario,$usuario_atualizado){
-        $this->db->where('idusuarios',$id_usuario);
-        $this->db->update('usuarios',$usuario_atualizado);
+    public function update_aluno($id_usuario,$usuario_atualizado){
+        $this->db->where('idaluno',$id_usuario);
+        $this->db->update('aluno',$usuario_atualizado);
 
         if($this->db->affected_rows()){
             return true;
@@ -58,9 +57,9 @@ class Aluno_model extends CI_Model {
         }
     }
     //DELECAO CRUD
-    public function delete_usuario($id_usuario){
-        $this->db->where('idusuarios',$id_usuario);
-        $this->db->delete('usuarios');
+    public function delete_aluno($id_usuario){
+        $this->db->where('idaluno',$id_usuario);
+        $this->db->delete('aluno');
 
         if($this->db->affected_rows()){
             return true;
@@ -75,6 +74,35 @@ class Aluno_model extends CI_Model {
         return $this->db->affected_rows()?true:false;
     }
 
-    
+    //retorna o id do aluno pesquisado como um objeto
+    public function get_aluno_id($id_item) {
+        $this->db->select('*');
+        $this->db->from('aluno');
+        $this->db->where('idaluno', $id_item);
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->row_object();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_aluno($id) {
+    $this->db->where('idaluno', $id);
+
+    $aluno = $this->db->get('aluno');
+
+    if ($aluno->num_rows()) {
+        return $aluno->row_array();
+    } else {
+        return false;
+    }
+}
+
+
+
+
+
 
 }

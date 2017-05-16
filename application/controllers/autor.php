@@ -49,18 +49,18 @@ class Autor extends CI_Controller
                 $cadastrou = $this->autor_model->create_autor($dados_autor);
                 if ($cadastrou) {
                     $alerta = array(
-                        "class" => "ui green message",
+                        "class" => "alert alert-success",
                         "mensagem" => "Autor cadastrado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
-                        "class" => "ui red message",
+                        "class" => "alert alert-danger",
                         "mensagem" => "Autor  nao cadastrado!<br>" . validation_errors()
                     );
                 }
             } else {
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => " O Autor  nao foi atualizado!<br>" . validation_errors()
                 );
             }
@@ -104,7 +104,7 @@ class Autor extends CI_Controller
 
                         if ($atualizou) {
                             $alerta = array(
-                                "class" => "ui green message",
+                                "class" => "alert alert-success",
                                 "mensagem" => "O usuario foi atualizado com sucesso!<br>" . validation_errors()
                             );
                         } else {
@@ -116,7 +116,7 @@ class Autor extends CI_Controller
                     } else {
                         //formaulario invalido
                         $alerta = array(
-                            "class" => "ui red message",
+                            "class" => "alert alert-danger",
                             "mensagem" => "Atençao o formulario nao  foi validado!<br>" . validation_errors()
                         );
                     }
@@ -124,13 +124,13 @@ class Autor extends CI_Controller
             } else {
                 $usuario = false;
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
                 );
             }
         } else {
             $alerta = array(
-                "class" => "ui red message",
+                "class" => "alert alert-danger",
                 "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
             );
         }
@@ -153,12 +153,12 @@ class Autor extends CI_Controller
                 $deletou = $this->autor_model->delete_autor($id_autor);
                 if ($deletou) {
                     $alerta = array(
-                        "class" => "ui green message",
+                        "class" => "alert alert-success",
                         "mensagem" => "Autor deletado com sucesso!<br>" . validation_errors()
                     );
                 } else {
                     $alerta = array(
-                        "class" => "ui red message",
+                        "class" => "alert alert-danger",
                         "mensagem" => "Autor  nao foi deletado!<br>" . validation_errors()
                     );
                 }
@@ -169,13 +169,13 @@ class Autor extends CI_Controller
                 $this->load->view('template', $dados);
             } else {
                 $alerta = array(
-                    "class" => "ui red message",
+                    "class" => "alert alert-danger",
                     "mensagem" => "Atençao o autor nao esta cadastrado!<br>" . validation_errors()
                 );
             }
         } else {
             $alerta = array(
-                "class" => "ui red message",
+                "class" => "alert alert-danger",
                 "mensagem" => "Atençao o autor informado esta incorreto!<br>" . validation_errors()
             );
 

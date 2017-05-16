@@ -23,9 +23,9 @@ class Fornecedores_model extends CI_Model {
             return false;
         }
     }
-    //PEGA TODOS OS UAURIOS LISTA SEM PARAMETROS
+    //PEGA TODOS OS fornecedores LISTA SEM PARAMETROS
     public function get_fornecedores() {
-        $query = $this->db->get('fornecedor'); //select * from usuarios
+        $query = $this->db->get('fornecedor'); //select * from fornecedores
 
         if ($query->num_rows()) {
             return $query->result_array();
@@ -46,9 +46,9 @@ class Fornecedores_model extends CI_Model {
         }
     }
     //UPDATE CRUD
-    public function update_usuario($id_usuario,$usuario_atualizado){
-        $this->db->where('idusuarios',$id_usuario);
-        $this->db->update('usuarios',$usuario_atualizado);
+    public function update_fornecedor($id_usuario,$usuario_atualizado){
+        $this->db->where('idfornecedor',$id_usuario);
+        $this->db->update('fornecedor',$usuario_atualizado);
 
         if($this->db->affected_rows()){
             return true;
@@ -57,9 +57,9 @@ class Fornecedores_model extends CI_Model {
         }
     }
     //DELECAO CRUD
-    public function delete_usuario($id_usuario){
-        $this->db->where('idusuarios',$id_usuario);
-        $this->db->delete('usuarios');
+    public function delete_fornecedor($id){
+        $this->db->where('idfornecedor',$id);
+        $this->db->delete('fornecedor');
 
         if($this->db->affected_rows()){
             return true;

@@ -18,12 +18,11 @@
 
 </style>
 <body>
-<h1 style="color: red">Usuario sem Permissão de acesso nesta area</h1>
+<h4>Sem Permissao</h4>
 <div class="fields">
     <div class="field">
-        <a href="<?php echo base_url('dashboard'); ?>" type="submit" class=" ui default button">voltar</a>
+        <a href="<?php echo base_url('dashboard'); ?>" type="submit" class=" ui black button">voltar</a>
     </div>
-    <img src="<?php echo base_url('img/acesso_negado.png'); ?>" alt="">
 </div>
 
 </body>

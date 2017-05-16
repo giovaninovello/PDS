@@ -7,8 +7,7 @@ class Conta extends CI_Controller {
     public function __construct() {
 
         parent::__construct();
-
-
+        
         if ($this->session->userdata('logado')) {
             if(!$this->uri->segment(2)=='sair')
                 
@@ -28,12 +27,13 @@ class Conta extends CI_Controller {
 
             if ($this->form_validation->run() === TRUE) {
                 $this->load->model('usuarios_model');
-
                 $email = $this->input->post('email');
                 $senha = $this->input->post('senha');
 
-
                 $login_existe = $this->usuarios_model->check_login($senha, $email);
+                $this->load->model('catalago_model'); //chamo o model
+                $catalagos = $this->catalago_model->get_catalago_count(); //retorno do model chamado com seu metodo
+
 
                 if ($login_existe) {
                     $usuario = $login_existe;
@@ -43,14 +43,15 @@ class Conta extends CI_Controller {
                         'logado' => TRUE,
                         'email' => $usuario['email'],
                         'id_usuario'=> $usuario['idusuarios'],
-                        'tipo'=>$usuario['tipo_usu']
-                        
+                        'tipo'=>$usuario['tipo_usu'],
+                        'catalago'=>$catalagos
+
                     );
-                   
-                    
+
                     //inicializa a sessao
                     $this->session->set_userdata($session);
                     redirect('dashboard');
+
 
                 } else {
                     //login invalido
@@ -69,10 +70,11 @@ class Conta extends CI_Controller {
         $dados = array(
             "alerta" => $alerta,
             "view"=>'conta/entrar',
-            "hidemenu"=>true
+            "hidemenu"=>true,
 
 
         );
+
         $this->load->view('template', $dados);
 
        
@@ -80,23 +82,17 @@ class Conta extends CI_Controller {
 
     public function sem_permissao() {
 
-
         $dados = array(
             "view"=>'conta/sem-permissao',
             "hidemenu"=>true
-
-
         );
         $this->load->view('template', $dados);
-
-
     }
-    
+
     public function sair() {
 
         $this->session->sess_destroy();
         redirect('conta/entrar');
-
     }
     
 }

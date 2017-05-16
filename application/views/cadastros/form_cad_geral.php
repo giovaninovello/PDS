@@ -1,33 +1,48 @@
+<div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
+    <!-- Content Header (Page header) -->
 
-    <div class="ui  column  container   ">
-        <h3 class="ui blue dividing header">Cadastros Gerais </h3>
-        <div class="ui stackable grid ">
-            <div class="two wide column">
-                <a href="<?php echo base_url('catalogo/cadastro') ?>"><div class="ui  blue small button test ad" data-text=" Exemplares"></div></a>
-            </div>
-            <div class="two wide column">
-                <a href="<?php echo base_url('fornecedor/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Fornecedores"></div></a>
-            </div>
-            <div class="two wide column">
-                <a href="<?php echo base_url('usuario/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Usuarios"></div></a>
-            </div>
-            <div class="two wide column">
-                <a href="<?php echo base_url('aluno/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Alunos"></div></a>
-            </div>
+    <div class="box-body">
+        <div class="col-md-12">
+            <!-- Application buttons -->
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Cadastros</h3>
+                </div>
+                <div class="box-body">
+                    <a href="<?php echo base_url('catalogo/cadastro') ?>"class="btn btn-app">
+                        <i class="fa fa-book"></i>Exemplares
+                    </a>
+                    <a href="<?php echo base_url('fornecedor/cadastro') ?>" class="btn btn-app">
+                        <i class="fa fa-truck"></i> Fornecedor
+                    </a>
+                    <a  href="<?php echo base_url('usuario/cadastrar') ?>" class="btn btn-app">
+                        <i class="fa fa-users"></i> Usuarios
+                    </a>
+                    <a href="<?php echo base_url('aluno/cadastrar') ?>" class="btn btn-app">
+                        <i class="fa fa-graduation-cap"></i> Alunos
+                    </a>
+                    <a  href="<?php echo base_url('autor/cadastrar') ?>" class="btn btn-app">
+                        <i class="fa fa-bookmark"></i> Autores
+                    </a>
+                    <a  href="<?php echo base_url('classificacao/cadastrar') ?>" class="btn btn-app">
+                        <i class="fa fa-share-alt"></i> Classificação
+                    </a>
+                    <a  href="<?php echo base_url('cidade/cadastrar') ?>" class="btn btn-app">
+                        <i class="fa fa-industry"></i> Cidades
+                    </a>
+                    <a  href="<?php echo base_url('tipo_doc/cadastrar') ?>" class="btn btn-app">
+                        <i class="fa fa-certificate"></i> Tipo de Exemplar
+                    </a>
+                    <a  href="<?php echo base_url('escola/cadastrar') ?>" class="btn btn-app">
+                        <i class="fa fa-institution"></i> Escolas
+                    </a>
+                    
 
-            <div class="two wide column">
-                <a href="<?php echo base_url('autor/cadastrar') ?>"><div class="ui  blue small button test ad" data-text=" Autores"></div></a>
+                </div>
+                <!-- /.box-body -->
             </div>
-
         </div>
-
     </div>
+</div>
 
-
-
-
-
-
-
-     
 
