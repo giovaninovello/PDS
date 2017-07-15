@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-        <div class="box box-success">
+        <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Edicao de Usuarios</h3>
                 <input type="hidden" name="captcha">
@@ -16,7 +16,7 @@
 
             <!-- Horizontal Form -->
             <?php if ($usuario ) { ?>
-        <form class="form-horizontal" <?php echo form_open_multipart('usuario/editar/' . $usuario['idusuarios']); ?>
+        <form class="form-horizontal" <?php echo form_open_multipart('Usuario/editar/' . $usuario['idusuarios']); ?>
             <input type="hidden" name="id_usuario" value="<?php echo $usuario['idusuarios']; ?>">
             <div class="col-md-6">
                 <div class="box-body">
@@ -59,6 +59,25 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="escola" class="col-sm-2 control-label">Escola</label>
+
+                        <!-- select -->
+                        <div class="col-sm-4">
+                            <select class="form-control" name="escola" id="escola">
+                                <?php foreach ($esc as $escola) {
+                                    if ($escola['idescola'] == $usuario['escola_idescola']) {
+                                        ?>
+                                        <option value="<?= $escola['idescola'] ?>" selected=""> <?= $escola['nome_escola']; ?> </option>
+                                    <?php } else { ?>
+                                        <option
+                                            value="<?= $escola['idescola'] ?>"> <?= $escola['nome_escola']; ?> </option>
+                                    <?php }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /.box-body -->
@@ -68,8 +87,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn bg-black">voltar</a>
-                <button type="submit"  name="editar" value="editar" class="btn btn-success  btn-flat">Salvar Alterações</button>
+                <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn bg-black btn-sm btn-flat">Cancelar</a>
+                <button type="submit"  name="editar" value="editar" class="btn btn-success  btn-sm btn-flat">Salvar Alterações</button>
 
                 <!-- /.box-footer -->
         </form>

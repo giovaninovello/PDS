@@ -33,8 +33,6 @@ $(document).ready(function () {
 
         });
 
-
-
         return false;
     });
 
@@ -51,9 +49,10 @@ $(document).ready(function () {
             },
             success:function (data) {
                 console.log(data);
-                $('input[name="titulo"]').val(data.titulo);
                 $('input[name="id_tombo"]').val(data.idtombo);
-                $('input[name="subtitulo"]').val(data.subtitulo);
+                $('input[name="titulo"]').val(data.titulo);
+                var imagem = $('#img').text(data.nome_imagem);
+                $('#subtitulo').text(data.subtitulo);
 
                 $('#minhaModal_livro').modal('hide');
                 $(".retorno").html('');

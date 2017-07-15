@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-        <div class="box box-success">
+        <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Edicao de Escolas</h3>
                 <input type="hidden" name="captcha">
@@ -20,13 +20,12 @@
                 <input type="hidden" name="id_escola" value="<?php echo $escola['idescola']; ?>">
                 <div class="col-md-6">
                     <div class="box-body">
-                        <div class="form-group has-error">
+                        <div class="form-group">
                             <label for="cod" class="col-sm-2 control-label">Nome</label>
 
                             <div class="col-sm-7">
 
                                 <input type="text" class="form-control" id="nome_escola"  name="nome_escola" value="<?php echo $escola['nome_escola']; ?>">
-                                <span class="help-block">Campo Obrigatório</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -38,12 +37,10 @@
                             </div>
 
                         </div>
-                        <div class="form-group has-error">
+                        <div class="form-group">
                             <label for="cuter" class="col-sm-2 control-label">Telefone</label>
-
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="telefone_escola" name="telefone_escola" value="<?php echo $escola['telefone_escola']; ?>">
-                                <span class="help-block">Campo Obrigatório</span>
+                            <input type="text" size="14" class="form-control" id="telefone" name="telefone_escola" value="<?php echo $escola['telefone_escola']; ?>">
                             </div>
                         </div>
 
@@ -56,8 +53,8 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn bg-black">voltar</a>
-                    <button type="submit"  name="editar" value="editar" class="btn btn-success  btn-flat">Salvar Alterações</button>
+                    <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn bg-black btn-sm btn-flat">Cancelar</a>
+                    <button type="submit"  name="editar" value="editar" class="btn btn-success  btn-sm btn-flat">Salvar Alterações</button>
 
                     <!-- /.box-footer -->
             </form>

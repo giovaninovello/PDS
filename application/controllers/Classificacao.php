@@ -12,7 +12,7 @@ class Classificacao extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('logado')) {
 
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
     }
 
@@ -40,7 +40,7 @@ class Classificacao extends CI_Controller
        
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
-            if ($this->input->post('captcha')) redirect('conta/cadastrar');
+            if ($this->input->post('captcha')) redirect('Conta/cadastrar');
             //regras de validacao
             $this->form_validation->set_rules('descricao', 'DESCRICAO', 'required');
             $this->form_validation->set_rules('numero', 'NUMERO', 'required');
@@ -88,10 +88,10 @@ class Classificacao extends CI_Controller
             if ($existe) {
                 $usuario = $existe;
                 if ($this->input->post('editar') === 'editar') {
-                    if ($this->input->post('captcha')) redirect('conta/entrar');
+                    if ($this->input->post('captcha')) redirect('Conta/entrar');
 
                     $id_cla_form = (int)$this->input->post('id_cla');
-                    if ($id !== $id_cla_form) redirect('conta/entrar');
+                    if ($id !== $id_cla_form) redirect('Conta/entrar');
                     //até aqui
                     //definir regras de validação
                     $this->form_validation->set_rules('descricao', 'DESCRICAO', 'required');

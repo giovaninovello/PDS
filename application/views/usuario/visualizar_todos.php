@@ -5,7 +5,7 @@
                 <h3 class="box-title">Listagem de Usuarios</h3>
             </div>
             <div class="box-body">
-                <table id="datatable" class="table table-bordered table-striped">
+                <table id="datatable" class="table table-responsive table-striped">
         <thead>
 
         <tr class="header">
@@ -14,6 +14,7 @@
             <th>E-MAIL</th>
             <th>DATA</th>
             <th>TIPO DE USUARIO</th>
+            <th>ESCOLA</th>
             <th>AÇÕES</th>
 
         </tr>
@@ -28,9 +29,10 @@
                     <td><?php echo $usuario['email']; ?></td>
                     <td><?php echo $usuario['senha']; ?></td>
                     <td><?= $usuario['tipo_usu'] == 1 ? 'Administrador' : 'Usuário'; ?></td>
+                    <td><?php echo $usuario['nome_escola']; ?></td>
                     <td>
-                        <a href="<?php echo base_url('usuario/editar/' . $usuario['idusuarios']); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button></a>
-                        <a href="<?php echo base_url('usuario/deletar/' . $usuario['idusuarios']); ?>"onclick="return confirm('Deseja deletar este usuario?');"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+                        <a href="<?php echo base_url('usuario/editar/' . $usuario['idusuarios']); ?>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></button></a>
+                        <a href="<?php echo base_url('usuario/deletar/' . $usuario['idusuarios']); ?>"onclick="return confirm('Deseja deletar este usuario?');"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></a>
                     </td>
 
                 </tr>

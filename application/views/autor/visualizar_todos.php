@@ -4,11 +4,11 @@
     <div class="box">
         <div class="box-header">
             <div class="box-body">
-                <div class="box box-success">
+                <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Listagem de Autores</h3>
                     </div>
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="example1" class="table table-responsive table-striped">
         <thead>
 
         <tr class="header">
@@ -26,7 +26,11 @@
                     <td><?php echo $item['nome_aut']; ?></td>
                     <td>
                         <div class="mini ui icon buttons">
-                            <a href="<?php echo base_url('autor/deletar/' . $item['idautor']); ?>" onclick="return confirm('Deseja deletar este usuario?');"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+                            <a href="<?php echo base_url('autor/editar/' . $item['idautor']); ?>"><button type="button" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-trash"></i></button></a>
+                            <?php if($_SESSION['tipo']==1){?>
+                            <a href="<?php echo base_url('autor/deletar/' . $item['idautor']); ?>" onclick="return confirm('Deseja deletar este Autor? Ao deletar esse registro todos os registros vinculados a esse será automaticamente excluído ...');"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></a>
+                            <?php }else {?>
+                            <?php }?>
                         </div>
                     </td>
                 </tr>

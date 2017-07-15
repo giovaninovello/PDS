@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
 
         parent::__construct();
         if (!$this->session->userdata('logado')) {
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
         
     }
@@ -18,12 +18,18 @@ class Dashboard extends CI_Controller {
         $catalagos = null;
 
         $this->load->model('catalago_model'); //chamo o model
-        $catalagos = $this->catalago_model->get_catalago(); //retorno do model chamado com seu metodo
+        $catalagos = $this->Catalago_model->get_catalago_limit(); //retorno do model chamado com seu metodo
+        $this->load->model('emprestimo_model');
+        $emprestimos = $this->emprestimo_model->get_emprestimos_total();
+        $pendentes = $this->emprestimo_model->get_emprestimos_total_pendentes();
+
 
 
         $dados = array(
             "alerta" => $alerta,
             "catalogo" => $catalagos,
+            "emprestimo"=>$emprestimos,
+            "pendente"=>$pendentes,
             "view"=>'dashboard/index'
 
 

@@ -2,50 +2,71 @@
     <!-- Content Header (Page header) -->
     <div class="box">
         <div class="box-body">
-            <div class="box box-success">
+            <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Listagem de Alunos Cadastrados</h3>
                 </div>
-                <table id="example1" class="table table-bordered table-striped">
-        <thead>
-        <tr  align="center">
-            <th>Nome</th>
-            <th>Turma</th>
-            <th>Serie</th>
-            <th>Ações</th>
+                <table id="example1" class="table table-responsive table-striped" >
+                    <thead>
+                    <tr >
+                        <th></th>
+                        <th >Nome</th>
+                        <th >Turma</th>
+                        <th >Serie</th>
+                        <th >Escola</th>
+                        <th >Status</th>
+                        <th >Ações</th>
 
-        </tr>
-        </thead>
-        
-        <?php
 
-        if($aluno) {
+                    </tr>
+                    </thead>
 
-            foreach ($aluno as $item) { ?>
-                <tr align="">
-                    <td><?php echo $item['nome_aluno']; ?></td>
-                    <td><?php echo $item['turma_aluno']; ?></td>
-                    <td><?php echo $item['serie_aluno']; ?></td>
-                    <td>
-                            <a href="<?php echo base_url('aluno/editar/' . $item['idaluno']); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
-                            <a href="<?php echo base_url('aluno/deletar/' . $item['idaluno']); ?>"onclick="return confirm('Deseja deletar este aluno?');"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+                    <?php
 
-                    </td>
-                </tr>
+                    if($aluno) {
 
-                <?php
-            }
-        }else {
-            ?>
-            <tr>
-                <td  colspan="3" class="text-center">Nao há alunos cadastrados</td>
-            </tr>
-            <?php
-        }
-        ?>
-        </tbody>
+                        foreach ($aluno as $item) { ?>
+                            <tr >
+                                <td><img alt="150x100" width="50" height="80" src="<?php echo base_url('assets/uploads/'. $item['nome_imagem']); ?>">
+                                <td><?php echo $item['nome_aluno']; ?></td>
+                                <td><?php echo $item['turma_aluno']; ?></td>
+                                <td><?php echo $item['serie_aluno']; ?></td>
+                                <td><?php echo $item['nome_escola']; ?></td>
+                                <td><?php if( $item['status_a']==0){
+                                        ?><span class="label label-danger">Desativado</span><?php
+                                    }else{ ?>
+                                        <span class="label label-success">Ativo</span><?php
+                                    } ?>
+                                <td >
+                                    <a href="<?php echo base_url('aluno/editar/' . $item['idaluno']); ?>"><button type="button" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"> </i></button></a>
+                                <?php if( $item['status_a']==0){
+                                        ?> <a href="<?php echo base_url('aluno/ativar/' . $item['idaluno']); ?>"onclick="return confirm('Deseja ativar este aluno para emprestimos?');"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-folder-open"></i> </button></a><?php
+                                    }else { ?>
+                                    <?php if ($item['pendente_aluno'] == 0) { ?>
+                                    <a href="<?php echo base_url('aluno/desativar/' . $item['idaluno']); ?>"
+                                       onclick="return confirm('Deseja desativar este aluno?');">
+                                            <button type="button" class="btn btn-warning btn-sm"><i
+                                                    class="glyphicon glyphicon-floppy-remove"></i></button></a><?php
+                                    }
+                                }?>
 
-    </table>
+
+
+                            </tr>
+
+                            <?php
+                        }
+                    }else {
+                        ?>
+                        <tr>
+                            <td  colspan="3" class="text-center">Nao há alunos cadastrados</td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                    </tbody>
+
+                </table>
                 <script>
 
                     $(document).ready(function ()
@@ -53,7 +74,7 @@
                         $('#example1').DataTable(
                             {
                                 "oLanguage":{
-                                    
+
                                     "sEmptyTable": "Nenhum registro encontrado",
                                     "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
                                     "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
@@ -85,7 +106,7 @@
                 </script>
             </div>
 
-</div>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -100,8 +121,8 @@
                         <p><b>Confirmar exclusão do registro?</b></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        <a href="<?php echo base_url('aluno/deletar/' . $item['idaluno']); ?>"><button class="btn btn-success">Confirmar</button></a>
+                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancelar</button>
+                        <a href="<?php echo base_url('aluno/deletar/' . $item['idaluno']); ?>"><button class="btn btn-success btn-sm">Confirmar</button></a>
                     </div>
                 </div>
 

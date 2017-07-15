@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-        <div class="box box-success">
+        <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Cadastros de Fornecedores</h3>
                 <input type="hidden" name="captcha">
@@ -21,21 +21,21 @@
 
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="cod" class="col-sm-2 control-label">Nome</label>
+                            <label for="cod" class="col-sm-2 control-label">Nome*</label>
 
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" id="nome"  name="nome" placeholder="Nome">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="cuter" class="col-sm-2 control-label">Endereço</label>
+                            <span for="cuter" class="col-sm-2 control-label">Endereço</span>
 
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
                             </div>
                         </div>
-                        <div class="form-group has-error">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Cidade</label>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Cidade*</label>
 
                             <!-- select -->
                             <div class="col-sm-5">
@@ -45,12 +45,11 @@
                                         <option value="<?=$cidade['idcidade']?>"> <?=$cidade['nome'];?> </option>
                                     <?php } ?>
                                 </select>
-                                <span class="help-block">Campo Obrigatório</span>
                             </div>
                         </div>
-                            <button type="reset" class="btn btn-danger  btn-flat">Cancelar</button>
-                            <button type="submit" name="cadastrar"value="cadastrar" class="btn btn-success  btn-flat">Cadastar</button>
-
+                        <a href="<?php echo base_url('dashboard/index'); ?>" type="submit" class="btn bg-black btn-sm btn-flat">Cancelar</a>
+                            <button type="submit" name="cadastrar"value="cadastrar" class="btn btn-success  btn-sm btn-flat">Cadastar</button>
+                        <label for=""><i> * Todos os campos em negrito sao obrigatórios</i></label>
                     </div>
                 </div>
     <!-- /.box-body -->

@@ -2,12 +2,16 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-        <div class="box box-success">
+        <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Edicao de Cidades</h3>
                 <input type="hidden" name="captcha">
             </div>
-
+            <style type="text/css">
+                input#uf {
+                    text-transform: uppercase;
+                }
+            </style>
             <?php if ($alerta) { ?>
                 <div class=" alert alert-success-<?php echo $alerta['class']; ?>">
                     <?php echo $alerta['mensagem']; ?>
@@ -32,12 +36,12 @@
                             <label for="serie" class="col-sm-2 control-label">UF</label>
 
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="uf" name="uf" value='<?php echo $cidade['uf']; ?>'>
+                                <input type="text"  size="2" class="form-control" id="uf" name="uf"  value='<?php echo $cidade['uf']; ?>'>
                             </div>
                         </div>
 
-                        <button type="reset" class="btn btn-danger  btn-flat">Cancelar</button>
-                        <button type="submit" name="editar"  value="editar" class="btn btn-success  btn-flat">Salvar Alterações</button>
+                        <button type="reset" class="btn bg-black  btn-sm btn-flat">Cancelar</button>
+                        <button type="submit" name="editar"  value="editar" class="btn btn-success  btn-sm btn-flat">Salvar Alterações</button>
 
                     </div>
             </div>

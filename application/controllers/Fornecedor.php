@@ -11,7 +11,7 @@ class Fornecedor extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('logado')) {
 
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
     }
 
@@ -21,9 +21,8 @@ class Fornecedor extends CI_Controller
         $fornecedores = null;
 
         $this->load->model('fornecedores_model'); //chamo o model
-        $fornecedores = $this->fornecedores_model->get_fornecedores(); //retorno do model chamado com seu metodo
-
-
+        $fornecedores = $this->fornecedores_model->get_fornecedores();
+        
         $dados = array(
             "alerta" => $alerta,
             "fornecedor" => $fornecedores,
@@ -50,7 +49,7 @@ class Fornecedor extends CI_Controller
     {
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
-            if ($this->input->post('captcha')) redirect('conta/cadastrar');
+            if ($this->input->post('captcha')) redirect('Conta/cadastrar');
             //regras de validacao
             $this->form_validation->set_rules('nome', 'NOME', 'required');
 
@@ -58,7 +57,7 @@ class Fornecedor extends CI_Controller
                 $dados_fornecedor = array(
                     'nome_f' => $this->input->post('nome'),
                     'endereco_f' => $this->input->post('endereco'),
-                    'cidade_f' => $this->input->post('cidade')
+                    'cidade_f' => $this->input->post('cid')
 
                 );
                 $this->load->model('fornecedores_model');
@@ -93,26 +92,30 @@ class Fornecedor extends CI_Controller
         $alerta = null;
         $id = (int)$id;
         if ($id) {
+
+            $this->load->model('cidade_model');
+            $cidade=$this->cidade_model->get_cidade();
+
             $this->load->model('fornecedores_model');
             $existe = $this->fornecedores_model->get_fornecedor($id);
 
             if ($existe) {
                 $usuario = $existe;
                 if ($this->input->post('editar') === 'editar') {
-                    if ($this->input->post('captcha')) redirect('conta/entrar');
+                    if ($this->input->post('captcha')) redirect('Conta/entrar');
 
                     $id_usuario_form = (int)$this->input->post('id_fornecedor');
-                    if ($id !== $id_usuario_form) redirect('conta/entrar');
+                    if ($id !== $id_usuario_form) redirect('Conta/entrar');
                     //definir regras de validação
                     $this->form_validation->set_rules('nome', 'NOME', 'required');
-                    $this->form_validation->set_rules('cidade', 'CIDADE', 'required');
+                    $this->form_validation->set_rules('cid', 'CIDADE', 'required');
 
                     //verificar se as regra sao atendidas
                     if ($this->form_validation->run() === true) {
                         $usuario_atualizado = array(
                             'nome_f' => $this->input->post('nome'),
                             'endereco_f' => $this->input->post('endereco'),
-                            'cidade_f' => $this->input->post('cidade')
+                            'cidade_f' => $this->input->post('cid')
 
 
                         );
@@ -153,8 +156,10 @@ class Fornecedor extends CI_Controller
         $dados = array(
             "alerta" => $alerta,
             "usuario" => $usuario,
+            "cid"=>$cidade,
             "view" => 'fornecedor/editar'
         );
+
         $this->load->view('template', $dados);
     }
 

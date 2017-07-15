@@ -11,7 +11,7 @@ class Tipo_doc extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('logado')) {
 
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
     }
 
@@ -40,7 +40,7 @@ class Tipo_doc extends CI_Controller
     {
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
-            if ($this->input->post('captcha')) redirect('conta/cadastrar');
+            if ($this->input->post('captcha')) redirect('Conta/cadastrar');
             //regras de validacao
             $this->form_validation->set_rules('descricao', 'DESCRICAO', 'required');
 
@@ -87,10 +87,10 @@ class Tipo_doc extends CI_Controller
             if ($existe) {
                 $doc = $existe;
                 if ($this->input->post('editar') === 'editar') {
-                    if ($this->input->post('captcha')) redirect('conta/entrar');
+                    if ($this->input->post('captcha')) redirect('Conta/entrar');
 
                     $id_doc_form = (int)$this->input->post('id_tipo_doc');
-                    if ($id !== $id_doc_form) redirect('conta/entrar');
+                    if ($id !== $id_doc_form) redirect('Conta/entrar');
                     //definir regras de validação
                     $this->form_validation->set_rules('descricao', 'TIPO DE DOCUMENTO', 'required');
 

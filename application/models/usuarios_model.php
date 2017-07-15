@@ -9,10 +9,11 @@ class Usuarios_model extends CI_Model {
     public function check_login($senha, $email) {
 
         //definido parametro from
+        $this->db->select('*');
         $this->db->from('usuarios');
-        //definindo paramentro where
         $this->db->where('usuarios.email', $email);
         $this->db->where('usuarios.senha', $senha);
+
         //execurando query no banco
 
         $usuarios = $this->db->get();
@@ -25,30 +26,34 @@ class Usuarios_model extends CI_Model {
         }
     }
 
+    public function check_escola($termo) {
 
+        //definido parametro from
+        $this->db->select('*');
+        $this->db->from('escola');
+        $this->db->where('escola.idescola',$termo);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows()) {
+            $query = $query->result_array();
+            return $query[0];
+        } else {
+            return false;
+        }
+    }
+    
     //PEGA TODOS OS UAURIOS LISTA SEM PARAMETROS
     public function get_usuarios() {
-        $query = $this->db->get('usuarios'); //select * from usuarios
-
+        $this->db->select('*');
+        $this->db->from('usuarios');
+        $this->db->join('escola','escola.idescola = usuarios.escola_idescola');
+        $query = $this->db->get();
         if ($query->num_rows()) {
             return $query->result_array();
         } else {
             return false;
         }
-    }
-    //listando todoas as permissões de um usuario
-    function get_permissao_edit($termo,$id_metodo) {
-        //passandi 2 parametros para visualizar um  registro apenas o selcionado
-
-        $this->db->select('*');
-        $this->db->from('permissoes');
-        $this->db->join('metodos','metodos.id = permissoes.id_metodo');
-        $this->db->join('usuarios','usuarios.idusuarios = permissoes.id_usuario');
-        $this->db->where('idusuarios', $termo);
-        $this->db->where('id_metodo', $id_metodo);
-        $query = $this->db->get();
-        return $query->result_array();
-
     }
     //PEGA ID DO USUARIO COM PARAMATRO
     public function get_usuario($id_usuario) {
@@ -61,6 +66,8 @@ class Usuarios_model extends CI_Model {
             return false;
         }
     }
+    
+
     //UPDATE CRUD
     public function update_usuario($id_usuario,$usuario_atualizado){
         $this->db->where('idusuarios',$id_usuario);

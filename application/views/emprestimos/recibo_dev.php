@@ -1,51 +1,60 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-        <div class="box box-success">
+        <div class="">
             <div class="box-header with-border">
-                <h3 class="box-title">Emprestimos</h3>
+
                 <input type="hidden" name="captcha">
             </div>
 
-            <?php if ($alerta) { ?>
-                <div class=" alert alert-success-<?php echo $alerta['class']; ?>">
-                    <?php echo $alerta['mensagem']; ?>
-                </div>
-            <?php } ?>
+
 
                     <div  class="container-fluid" style="margin-left: 25%">
                         <div  class="col-sm-5">
                             <?php if ($recibo) { ?>
-                            <div class="row" style="text-align: left">
-                                <p>==================================================================</p>
-                                <p style="text-align: center">COMPROVANTE DE DEVOLUCAO</p>
-                                <p>==================================================================</p>
+                            <div class="row">
+                                <p>=========================================</p>
+                                <strong><p>COMPROVANTE DE DEVOLUCAO</p></strong>
+                                <p>=========================================</p>
                             </div>
                             <div class="row">
-                                <p>Data:__<?php echo $recibo['datadev'];?></p>
-                                <p>Nome:__<?php echo $recibo['aluno_idaluno']?></p>
-                                <p>==================================================================</p>
+                                <strong><p>Data:&nbsp;<?php echo date('d/m/Y', strtotime($recibo['datadev']));?></p></strong>
+                                <p>Nome:&nbsp;<?php echo $aluno->nome_aluno?></p>
+                                <p>==========================================</p>
                             </div>
                             <div class="row">
-                                <p>Devolver em:__<?php echo $recibo['datadevolucaoreal'];?></p>
-                                <p>Dados do Item Emprestado:__<?php echo $recibo['id_tombo'];?></p>
-                                <p>==================================================================</p>
+                               <strong><p>Devolver em:&nbsp;<?php echo date('d/m/Y', strtotime($recibo['datadevolucaoreal']));?></p></strong>
+                                <p>Dados do Item Emprestado:&nbsp;<?php echo $titulo->titulo;?></p>
+                                <p>==========================================</p>
                             </div>
-                            <div class="row" style="text-align: center">
+                            <div class="row" >
                                 <p>Assinatura do Usuario</p>
                                 <p>Grato pela preferencia. Volte empre!</p>
-                                <p>==================================================================</p><br><br><br>
+                                <p>==========================================</p>
                             </div>
 
                             <div class="row" style="align-items: center">
-                                <button   class="btn btn-success btn-flat" onclick="window.print(); return false;">Imprimir</button>
-                                <a href="<?php echo base_url('dashboard'); ?>"><button   class="btn btn-success btn-flat">Finalizar Somente</button></a>
+                                <button class="noprint" onclick="window.print(); return false;">Imprimir</button>
+                                <a class="noprint" href="<?php echo base_url('dashboard'); ?>"><button >Finalizar Somente</button></a>
                             </div>
                             <br>
 
                         </div>
                         <?php } ?>
 
+                        <style type="text/css">
+
+                            #div1 {
+                                text-align: justify;
+                            }
+
+                            @media print {
+                                .noprint { display:none; }
+                                body { background: #fff; }
+                            }
+
+                            }
+                        </style>
 
 
                     </div>

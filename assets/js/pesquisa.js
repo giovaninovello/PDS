@@ -55,13 +55,7 @@ $(document).ready(function () {
             success: function (data) {
 
                 console.log(data.idaluno);
-                $('input[name="nome"]').val(data.nome_aluno);
-                //$('input[name="pendente"]').val(data.pendente_aluno);
-                if(data.pendente_aluno==0){
-                    document.getElementById("pendente").value="NAO"
-                }else{
-                    document.getElementById("pendente").value="SIM"
-                }
+                $('input[name="nome_aluno"]').val(data.nome_aluno);
                 $('input[name="id_aluno"]').val(data.idaluno);
                 $('#minhaModal').modal('hide');
                 $(".retorno").html('');

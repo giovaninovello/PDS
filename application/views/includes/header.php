@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sistema de Biblioteca Capao da Canoa</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -21,15 +21,13 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/iCheck/all.css')?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.min.css')?>">
-
-
-
-
-
-
+    <link rel="stylesheet" href="<?php echo base_url('assets/style.css')?>">
+    
+    
 
     <!-- jQuery 2.2.3 -->
     <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js')?>"></script>
@@ -54,6 +52,12 @@
     <script src="<?php echo base_url('assets/dist/js/demo.js')?>"></script>
     <!--data-->
     <script type="text/javascript" src="<?php echo  base_url('assets/js/mascaras.js')?>"></script>
+    
+    
+    
+    
+
+    
 
 
 

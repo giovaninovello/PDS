@@ -25,7 +25,9 @@ class Fornecedores_model extends CI_Model {
     }
     //PEGA TODOS OS fornecedores LISTA SEM PARAMETROS
     public function get_fornecedores() {
-        $query = $this->db->get('fornecedor'); //select * from fornecedores
+        $this->db->from('fornecedor f'); //select * from fornecedores
+        $this->db->join('cidade c','c.idcidade = f.cidade_f');
+        $query= $this->db->get();
 
         if ($query->num_rows()) {
             return $query->result_array();
@@ -36,7 +38,6 @@ class Fornecedores_model extends CI_Model {
     //PEGA ID DO USUARIO COM PARAMATRO
     public function get_fornecedor($id_fornecedor) {
         $this->db->where('idfornecedor', $id_fornecedor);
-
         $usuario = $this->db->get('fornecedor');
 
         if ($usuario->num_rows()) {

@@ -3,11 +3,11 @@
     <div class="box">
         <div class="box-header">
             <div class="box-body">
-                <div class="box box-success">
+                <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Listagem de Fornecedores</h3>
                     </div>
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-responsive table-striped">
         <thead>
         <tr class=" header" align="center">
             <th>Nome</th>
@@ -24,10 +24,10 @@
                 <tr >
                     <td><?php echo $item['nome_f']; ?></td>
                     <td><?php echo $item['endereco_f']; ?></td>
-                    <td><?php echo $item['cidade_f']; ?></td>
+                    <td><?php echo $item['nome']; ?></td>
                     <td>
-                        <a href="<?php echo base_url('fornecedor/editar/' . $item['idfornecedor']); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button></a>
-                        <a href="<?php echo base_url('fornecedor/deletar/' . $item['idfornecedor']); ?>" onclick="return confirm('Deseja deletar este Item?');"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+                        <a href="<?php echo base_url('fornecedor/editar/' . $item['idfornecedor']); ?>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></button></a>
+                        <a href="<?php echo base_url('fornecedor/deletar/' . $item['idfornecedor']); ?>" onclick="return confirm('Deseja deletar este Item?');"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></a>
 
                     </td>
                 </tr>

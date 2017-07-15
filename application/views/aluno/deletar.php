@@ -8,7 +8,7 @@
                         <?php echo $alerta['mensagem']; ?>
                     </div>
                 <?php } ?>
-                <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn bg-black">voltar</a>
+                <a href="<?php echo base_url('Aluno/visualizar_todos'); ?>" type="submit" class="btn  btn-sm bg-black">voltar</a>
 
 
        

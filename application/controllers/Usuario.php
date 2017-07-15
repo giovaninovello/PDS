@@ -11,7 +11,7 @@ class Usuario extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('logado')) {
 
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
 
     }
@@ -35,6 +35,24 @@ class Usuario extends CI_Controller
 
         $this->load->view('template', $dados);
     }
+ 
+    
+
+    public  function cadastro(){
+        $alerta = null;
+        $this->load->model('escola_model');
+        $escola = $this->escola_model->get_escolas();
+
+
+        $dados = array(
+            "alerta"=>$alerta,
+            "esc"=>$escola,
+            "modal"=>false,
+            "view" => 'usuario/cadastrar'
+
+        );
+        $this->load->view('template', $dados);
+    }
 
     public function cadastrar()
     {
@@ -43,7 +61,7 @@ class Usuario extends CI_Controller
 
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
-            if ($this->input->post('captcha')) redirect('conta/cadastrar');
+            if ($this->input->post('captcha')) redirect('Conta/cadastrar');
             //regras de validacao
             $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email|is_unique[usuarios.email]');
             $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[3]|max_length[20]');
@@ -54,8 +72,10 @@ class Usuario extends CI_Controller
                     'nome' => $this->input->post('nome'),
                     'email' => $this->input->post('email'),
                     'senha' => $this->input->post('senha'),
-                    'tipo_usu' => $this->input->post('tipo')
+                    'tipo_usu' => $this->input->post('tipo'),
+                    'escola_idescola' =>$this->input->post('escola')
                 );
+
                 $this->load->model('usuarios_model');
                 $cadastrou = $this->usuarios_model->create_usuario($dados_usuario);
                 if ($cadastrou) {
@@ -91,16 +111,19 @@ class Usuario extends CI_Controller
     $alerta = null;
     $id_usuario = (int)$id_usuario;
     if ($id_usuario) {
+        $this->load->model('escola_model');
+        $escola = $this->escola_model->get_escolas();
+
         $this->load->model('usuarios_model');
         $existe = $this->usuarios_model->get_usuario($id_usuario);
-
+        
         if ($existe) {
             $usuario = $existe;
             if ($this->input->post('editar') === 'editar') {
-                if ($this->input->post('captcha')) redirect('conta/entrar');
+                if ($this->input->post('captcha')) redirect('Conta/entrar');
 
                 $id_usuario_form = (int)$this->input->post('id_usuario');
-                if ($id_usuario !== $id_usuario_form) redirect('conta/entrar');
+                if ($id_usuario !== $id_usuario_form) redirect('Conta/entrar');
                 //definir regras de validação
                 $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email');
                 $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[3]|max_length[20]');
@@ -111,7 +134,8 @@ class Usuario extends CI_Controller
                         'nome' => $this->input->post('nome'),
                         'email' => $this->input->post('email'),
                         'senha' => $this->input->post('senha'),
-                        'tipo_usu' => $this->input->post('tipo')
+                        'tipo_usu' => $this->input->post('tipo'),
+                        'escola_idescola' =>$this->input->post('escola')
 
                     );
                     $atualizou = $this->usuarios_model->update_usuario($this->input->post('id_usuario'), $usuario_atualizado);
@@ -151,86 +175,12 @@ class Usuario extends CI_Controller
     $dados = array(
         "alerta" => $alerta,
         "usuario" => $usuario,
+        "esc"=>$escola,
         "view" => 'usuario/editar'
     );
     $this->load->view('template', $dados);
 }
-
-    public function editar_permissao($id_usuario)
-    {
-        $alerta = null;
-        $id_usuario = (int)$id_usuario;
-        $id_metodo = 1;
-
-
-        if ($id_usuario) {
-
-            $this->load->model('usuarios_model');
-            $existe = $this->usuarios_model->get_permissao_edit($id_usuario,$id_metodo);
-
-
-
-            if ($existe) {
-                $usuario = $existe;
-
-                if ($this->input->post('editar') === 'editar') {
-                    if ($this->input->post('captcha')) redirect('conta/entrar');
-                    
-                    //definir regras de validação
-                    $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email');
-                    $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[3]|max_length[20]');
-                    $this->form_validation->set_rules('confirmar_senha', 'CONFIRMAR_SENHA', 'required|min_length[3]|max_length[20]|matches[senha]');
-                    //verificar se as regra sao atendidas
-                    if ($this->form_validation->run() === true) {
-                        $usuario_atualizado = array(
-                            'nome' => $this->input->post('nome'),
-                            'email' => $this->input->post('email'),
-                            'senha' => $this->input->post('senha')
-                            
-
-                        );
-                        $atualizou = $this->usuarios_model->update_usuario($this->input->post('id_usuario'), $usuario_atualizado);
-
-                        if ($atualizou) {
-                            $alerta = array(
-                                "class" => "ui green message",
-                                "mensagem" => "O usuario foi atualizado com sucesso!<br>" . validation_errors()
-                            );
-                        } else {
-                            $alerta = array(
-                                "class" => "ui red message",
-                                "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
-                            );
-                        }
-                    } else {
-                        //formaulario invalido
-                        $alerta = array(
-                            "class" => "ui red message",
-                            "mensagem" => "Atençao o formulario nao  foi validado!<br>" . validation_errors()
-                        );
-                    }
-                }
-            } else {
-                $usuario = false;
-                $alerta = array(
-                    "class" => "ui red message",
-                    "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
-                );
-            }
-        } else {
-            $alerta = array(
-                "class" => "ui red message",
-                "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
-            );
-        }
-        $dados = array(
-            "alerta" => $alerta,
-            "usuario_metodo" => $usuario,
-            "view" => 'usuario/editar_permissao'
-        );
-        $this->load->view('template', $dados);
-    }
-
+    
     public function deletar($id_usuario)
     {
         $alerta = null;
@@ -271,19 +221,6 @@ class Usuario extends CI_Controller
         }
     }
     
-    public function permissao(){
-
-
-        $f = new Auth();
-        $f->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
-        
-        $alerta = null;
-        $dados = array(
-            "alerta"=>$alerta,
-            "view" => 'usuario/tela_permissao'
-        );
-        $this->load->view('template', $dados);
-    }
 
 
 

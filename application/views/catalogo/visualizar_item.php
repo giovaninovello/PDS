@@ -8,13 +8,14 @@
     if($catalogo) {
     
     foreach ($catalogo as $item) { ?>
-        <div class="col-md-2">
+        <div class="col-md-2" style="margin-top: 50px">
             <img alt="250x200" width="100" height="150"  src="<?php echo base_url('assets/uploads/' . $item['nome_imagem']); ?>">
         </div>
+        <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn  btn-sm bg-black">voltar</a>
         <div class="col-sm-8">
             <section>
                 <div class="alert bg-primary alert-dismissible">
-                    <h4>Informações Basicas</h4>
+                    <h4>Registro Completo</h4>
                     <div class="col-sm-3">
                         <b>Titulo</b><br>
                         <b>Edicao</b><br>
@@ -25,6 +26,7 @@
                         <b>Fasciculo</b><br>
                         <b>Classificação</b><br>
                         <b>Tipo</b><br>
+                        <b>Cutter</b><br>
                     </div>
                         <?php echo $item['titulo']; ?><br>
                         <?php echo $item['edicao']; ?><br>
@@ -35,21 +37,21 @@
                         <?php echo $item['fasciculo']; ?><br>
                         <?php echo $item['descricao_cla']; ?><br>
                         <?php echo $item['descricao']; ?><br>
+                    <?php echo $item['cutter']; ?><br>
                     </div>
             </section>
-            <a href="<?php echo base_url('tombo/cadastro/' . $item['idcatalago']); ?>" ><button class="btn bg-black "><i class="fa  fa-retweet"></i>Tombar</button></a>
-            <a href="<?php echo base_url('catalogo/editar/' . $item['idcatalago']); ?>" ><button class="btn bg-black  "><i class="fa   fa-pencil-square-o"></i>Editar</button></a>
-            <a href="<?php echo base_url('catalogo/exemplares/' . $item['idcatalago']); ?>" ><button class="btn bg-black  "><i class="fa fa-share-square"></i>Exemplares - Tombos</button></a>
         </div>
-                   
+
         <?php
     }
+
     ?>
     </tbody>
 
     </table>
 
 </div>
+
 </div>
 
 <?php

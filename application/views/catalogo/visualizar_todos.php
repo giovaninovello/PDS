@@ -2,26 +2,21 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box">
-        <div class="box-header">
+        <div class="box box-solid box-default">
     <div class="box-body">
-        <div class="box box-success">
+        <div class="">
             <div class="box-header with-border">
-                <h3 class="box-title">Listagem de Exemplares</h3>
+                <h3 class="box-title " >Listagem de Exemplares</h3>
             </div>
-            
-            <table id="example1" class="table table-bordered table-striped">
-        <thead>
+
+            <table id="example1" class="table table-responsive ">
+        <thead >
         <tr align="center">
             <th>Imagem</th>
-            <th>Classificacao</th>
-            <th>Cutter</th>
             <th>Titulo</th>
-            <th>Isnb</th>
-            <th>Editora</th>
-            <th>Fasciculo</th>
-            <th>Issn</th>
             <th>Tipo_Documento</th>
-            <th>Visualizar</th>
+            <th>Data</th>
+            <th class="text-center">Opcoes</th>
         </tr>
         </thead>
         <tbody>
@@ -30,29 +25,29 @@
         if($catalogo) {
 
             foreach ($catalogo as $item) { ?>
-                <tr align="center">
-                    <td><img alt="150x100" width="50" height="80" src="<?php echo base_url('assets/uploads/'. $item['nome_imagem']); ?>">
-                    <td><?php echo $item['descricao_cla']; ?></td>
-                    <td><?php echo $item['cutter']; ?></td>
+                <tr align="">
+                    <td width="10px"><img alt="150x100" width="50" height="80" src="<?php echo base_url('assets/uploads/'. $item['nome_imagem']); ?>">
                     <td><?php echo $item['titulo']; ?></td>
-                    <td><?php echo $item['isbn']; ?></td>
-                    <td><?php echo $item['editora']; ?></td>
-                    <td><?php echo $item['fasciculo']; ?></td>
-                    <td><?php echo $item['issn']; ?></td>
+                    <td><?php echo $item['descricao']; ?></td>
                     <td><?php echo $item['descricao']; ?></td>
 
                     <td>
-                            <a href="<?php echo base_url('catalogo/visualizar_item/' . $item['idcatalago']); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></a>
-
+                        <a href="<?php echo base_url('catalogo/visualizar_item/' . $item['idcatalago']); ?>"><button type="button" class="btn btn-sm btn-primary">Ver Exemplar<i class=""></i></button></a>
+                        <?php if($_SESSION['tipo']==1){?>
+                        <a href="<?php echo base_url('catalogo/editar/' . $item['idcatalago']); ?>"><button type="button" class="btn btn-sm btn-primary">Editar<i class=""></i></button></a>
+                        <?php }?>
+                        <a href="<?php echo base_url('catalogo/exemplares/' . $item['idcatalago']); ?>"><button type="button" class="btn  btn-sm btn-primary">Ver tombos do Exemplar<i class=""></i></button></a>
+                        <a href="<?php echo base_url('tombo/cadastro/' . $item['idcatalago']); ?>"><button type="button" class="btn  btn-sm btn-primary    ">Tombar<i class=""></i></button></a>
                     </td>
+
+
+
                 </tr>
                 <?php
             }
         }else {
             ?>
-            <tr>
-                <td  colspan="3" class="text-center">Nao há Itens cadastrados</td>
-            </tr>
+
             <?php
         }
         ?>
@@ -68,18 +63,14 @@
             {
                 $('#example1').DataTable(
                     {
+                        responsive: true,
 
                         "oLanguage":{
-
+                            "responsive": "true",
                             "sEmptyTable": "Nenhum registro encontrado",
                             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
                             "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                            "sInfoPostFix": "",
-                            "sInfoThousands": ".",
                             "sLengthMenu": "_MENU_ resultados por página",
-                            "sLoadingRecords": "Carregando...",
-                            "sProcessing": "Processando...",
                             "sZeroRecords": "Nenhum registro encontrado",
                             "sSearch": "Pesquisar",
                             "oPaginate": {
@@ -87,25 +78,25 @@
                                 "sPrevious": "Anterior",
                                 "sFirst": "Primeiro",
                                 "sLast": "Último"
+
                             }
 
-                        },
-
-                        "oAria": {
-                            "sSortAscending": ": Ordenar colunas de forma ascendente",
-                            "sSortDescending": ": Ordenar colunas de forma descendente"
                         }
+
+
+
 
                     }
                 );
             });
 
-
+        
         </script>
 
 
     </div>
 </div>
+
 
 
 

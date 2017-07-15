@@ -12,7 +12,7 @@ class Escola extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('logado')) {
 
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
     }
 
@@ -32,6 +32,7 @@ class Escola extends CI_Controller
             "escola" => $escola,
             "view" => 'escola/visualizar_todos'
         );
+       
         $this->load->view('template', $dados);
     }
 
@@ -40,7 +41,7 @@ class Escola extends CI_Controller
        
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
-            if ($this->input->post('captcha')) redirect('conta/cadastrar');
+            if ($this->input->post('captcha')) redirect('Conta/cadastrar');
             //regras de validacao
             $this->form_validation->set_rules('nome_escola', 'NOME', 'required');
 
@@ -88,10 +89,10 @@ class Escola extends CI_Controller
             if ($existe) {
                 $escola = $existe;
                 if ($this->input->post('editar') === 'editar') {
-                    if ($this->input->post('captcha')) redirect('conta/entrar');
+                    if ($this->input->post('captcha')) redirect('Conta/entrar');
 
                     $id_escola_form = (int)$this->input->post('id_escola');
-                    if ($id !== $id_escola_form) redirect('conta/entrar');
+                    if ($id !== $id_escola_form) redirect('Conta/entrar');
                     //até aqui
                     //definir regras de validação
                     $this->form_validation->set_rules('nome_escola', 'NOME DA ESCOLA', 'required');

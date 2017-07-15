@@ -15,14 +15,14 @@
                     <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Cadastros</span>
+                        <span class="info-box-text">Cadastrados </span>
                         <span class="info-box-number"><?php echo $_SESSION['catalago']?></span>
 
                         <div class="progress">
-                            <div class="progress-bar" style="width: 70%"></div>
+                            <div class="progress-bar" style="width: 100%"></div>
                         </div>
                   <span class="progress-description">
-                    70% Increase in 30 Days
+                    Total de cadastros
                   </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -35,14 +35,15 @@
                     <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Likes</span>
-                        <span class="info-box-number">41,410</span>
+                        <span class="info-box-text">Emprestimos</span>
+                        <span class="info-box-number"><?php echo $emprestimo?></span>
 
                         <div class="progress">
-                            <div class="progress-bar" style="width: 70%"></div>
+                            <div class="progress-bar" ></div>
+                            <div class="progress-bar" style="width: 100%"></div>
                         </div>
                   <span class="progress-description">
-                    70% Increase in 30 Days
+                     Emprestimos Ativos
                   </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -55,14 +56,14 @@
                     <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Events</span>
-                        <span class="info-box-number">41,410</span>
+                        <span class="info-box-text">Pendentes</span>
+                        <span class="info-box-number"><?php echo $pendente?></span>
 
                         <div class="progress">
-                            <div class="progress-bar" style="width: 70%"></div>
+                            <div class="progress-bar" style="width: 100%"></div>
                         </div>
                   <span class="progress-description">
-                    70% Increase in 30 Days
+                    Itens com Atraso
                   </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -75,21 +76,21 @@
                     <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Comments</span>
-                        <span class="info-box-number">41,410</span>
+                        <span class="info-box-text">Baixados</span>
+                        <span class="info-box-number"><?php echo $_SESSION['baixa']?></span>
 
                         <div class="progress">
-                            <div class="progress-bar" style="width: 70%"></div>
+                            <div class="progress-bar" style="width: 100%"></div>
                         </div>
                   <span class="progress-description">
-                    70% Increase in 30 Days
+
                   </span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
                 <!-- /.info-box -->
             </div>
-        </div>
+
 
             <label for="cod" class="col-sm-2 control-label">Pesquisa Rápida</label>
 
@@ -98,10 +99,10 @@
                         <div class="col-md-11">
                             <input type="text" class="form-control" id="pesquisar" name="pesquisar" placeholder="Digite aqui o Titulo do Item a ser pesquisado" required="required">
                             <br>
-                            <button type="submit"  class="btn btn-success"><i class="fa fa-check"></i>Pesquisar</button>
+                            <button type="submit"  class="btn btn-success btn-sm btn-flat"><i class="fa fa-check"></i>Pesquisar</button>
                         </div>
 
-
+            </div>
 
     </section>
 
@@ -114,7 +115,7 @@
 
         foreach ($catalogo as $item) { ?>
             <tr align="center">
-                <td><img alt="150x100" width="50" height="80" src="<?php echo base_url('assets/uploads/'. $item['nome_imagem']); ?>"></td>
+                <a href="<?php echo base_url('catalogo/visualizar_item/'. $item['idcatalago']); ?>"><td><img alt="150x100" width="50" height="80" src="<?php echo base_url('assets/uploads/'. $item['nome_imagem']); ?>"></td></a>
             </tr>
             <?php
         }
@@ -126,6 +127,9 @@
             <?php
         }
         ?>
+    </section>
+    <section>
+        
     </section>
     
             <!-- /.col -->

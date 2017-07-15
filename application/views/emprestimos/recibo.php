@@ -1,61 +1,68 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-        <div class="box box-success">
-            <div class="box-header with-border">
-                <h3 class="box-title">Emprestimos</h3>
                 <input type="hidden" name="captcha">
             </div>
 
-            <?php if ($alerta) { ?>
-                <div class=" alert alert-success-<?php echo $alerta['class']; ?>">
-                    <?php echo $alerta['mensagem']; ?>
-                </div>
-            <?php } ?>
-
-                    <div  class="container-fluid" style="margin-left: 25%">
-                        <div  class="col-sm-5">
-                            <?php if ($mostrarecibo) { ?>
-                            <div class="row" style="text-align: left">
-                                <p>==================================================================</p>
-                                <p style="text-align: center">COMPROVANTE DE EMPRESTIMO</p>
-                                <p>==================================================================</p>
-                            </div>
-                            <div class="row">
-                                <p>Data:<?php echo date('d-m-Y', strtotime($mostrarecibo['dataret']));?></p>
-                                <p>Nome:<?php echo $mostrarecibo['aluno_idaluno']?></p>
-                                <p>==================================================================</p>
-                            </div>
-                            <div class="row">
-                                <p>Devolver em:<?php echo date('d-m-Y', strtotime($mostrarecibo['datadev']));?></p>
-                                <p>Dados do Item Emprestado:<?php echo $mostrarecibo['id_tombo'];?></p>
-                                <p>==================================================================</p>
-                            </div>
-                            <div class="row" style="text-align: justify">
-                                Ao aceitar este empréstimo estou ciente das
-                                sanções quie estarei sujeito
-                                quando os prazos e
-                                termos de devolução nao forem cumpridos
-                                <p>==================================================================</p><br><br>
-                            </div>
-                            <div class="row" style="text-align: center">
-                                <p>Assinatura do Usuario</p>
-                                <p>Grato pela preferencia. Volte empre!</p>
-                                <p>==================================================================</p>
-                            </div>
-
-                            <div class="row" style="align-items: center">
-                                <button   class="btn btn-success btn-flat" onclick="window.print(); return false;">Imprimir</button>
-                                <button class="btn btn-success btn-flat">Finalizar Somente</button>
-                            </div>
-                            <br>
-
+            <div id="div1" class="conteudo">
+                <div  class="container-fluid" style="margin-left: 25%">
+                    <div  class="col-sm-5">
+                        <?php if ($mostrarecibo) { ?>
+                        <div class="row">
+                            <p>=================================================</p>
+                            <strong><p >COMPROVANTE DE EMPRESTIMO</p></strong>
+                            <p>=================================================</p>
                         </div>
-                        <?php } ?>
+                        <div class="row">
+                            <strong><p>Data:&nbsp;<?php echo date('d/m/Y', strtotime($mostrarecibo['dataret']));?></p></strong>
+                            <p>Nome:&nbsp;<?php echo $mostrarecibo['aluno_idaluno']?></p>
+                            <p>=================================================</p>
+                        </div>
+                        <div class="row">
+                            <strong><p>Devolver em:&nbsp;<?php echo date('d/m/Y', strtotime($mostrarecibo['datadev']));?></p></strong>
+                            <p>Dados do Item Emprestado:&nbsp;<?php echo $mostrarecibo['id_tombo'];?></p>
+                            <p>=================================================</p>
+                        </div>
+                        <div class="row" style="text-align: justify">
+                            Ao aceitar este empréstimo estou ciente das
+                            sanções que <p>estarei sujeito quando os prazos e</p>
+                            termos de devolução nao <p>forem cumpridos</p>
+                            <p>=================================================</p>
+                        </div>
+                        <div class="row" style="text-align: justify">
+                            <p>Assinatura do Usuario</p>
+                            <p>Grato pela preferencia. Volte empre!</p>
+                            <p>=================================================</p>
+                        </div>
 
-
+                        <div class="row" style="align-items: center">
+                            <button   onclick="window.print();"  class="noprint" class="btn btn-success  btn-sm btn-flat">Imprimir</button>
+                            <a class="noprint"  href="<?php echo base_url('dashboard'); ?>"><button >Finalizar</button></a>
+                        </div>
+                        <br>
 
                     </div>
+                    <?php } ?>
+
+                </div>
+            </div>
+            <style type="text/css">
+
+                #div1 {
+                    text-align: justify;
+                }
+
+                @media print {
+                    .noprint { display:none; }
+                    body { background: #fff; }
+                }
+
+                }
+            </style>
+
+
+
+            
 
             
 

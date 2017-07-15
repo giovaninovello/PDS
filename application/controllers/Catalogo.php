@@ -10,7 +10,7 @@ class Catalogo extends CI_Controller
 //verifica se esta logado no sistema se nao redirecina para pagina de login
         parent::__construct();
         if (!$this->session->userdata('logado')) {
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
 
     }
@@ -49,6 +49,7 @@ class Catalogo extends CI_Controller
     $this->load->model('catalago_model'); //chamo o model
     $catalagos = $this->catalago_model->get_catalago(); //retorno do model chamado com seu metodo
 
+  
 
     $dados = array(
         "alerta" => $alerta,
@@ -71,6 +72,7 @@ class Catalogo extends CI_Controller
                 "view" => 'catalogo/visualizar_todos'
             );
 
+
             $this->load->view('template', $dados);
 
 
@@ -78,13 +80,13 @@ class Catalogo extends CI_Controller
 
     public function cadastrar()
     {
-        
-        
+
+
         //inicializa a variacvel alerta como null
         $alerta = null;
         //verifica se o input do form é igual a cadastrar senao for redireciona para cadastro
         if ($this->input->post('cadastrar') === "cadastrar") {
-            if ($this->input->post('captcha')) redirect('conta/cadastrar');
+            if ($this->input->post('captcha')) redirect('Conta/cadastrar');
             //regras de validacao
             $this->form_validation->set_rules('cuter', 'CUTTER', 'required');
             $this->form_validation->set_rules('titulo', 'TITULO', 'required');
@@ -199,10 +201,10 @@ class Catalogo extends CI_Controller
             if ($existe) {
                 $item = $existe;
                 if ($this->input->post('editar') === 'editar') {
-                    if ($this->input->post('captcha')) redirect('conta/entrar');
+                    if ($this->input->post('captcha')) redirect('Conta/entrar');
 
                     $id_item_form = (int)$this->input->post('id_cat');
-                    if ($id_cat !== $id_item_form) redirect('conta/entrar');
+                    if ($id_cat !== $id_item_form) redirect('Conta/entrar');
                     //definir regras de validação
                     $this->form_validation->set_rules('cuter', 'CUTTER', 'required');
                     $this->form_validation->set_rules('titulo', 'TITULO', 'required');
@@ -328,7 +330,7 @@ class Catalogo extends CI_Controller
         $this->load->view('template', $dados);
 
     }
-    
+
     public function exemplares($id_item){
 
         $id_item = (int)$id_item;
@@ -336,15 +338,29 @@ class Catalogo extends CI_Controller
         $catalagos = null;
 
         $this->load->model('catalago_model'); //chamo o model
-        $catalagos = $this->catalago_model->get_tombo($id_item); //retorno do model chamado com seu metodo
+        if($_SESSION['tipo']==1) {
+            $catalagos = $this->catalago_model->get_tombos_item_adm($id_item); //retorno do model chamado com seu metodo
 
-        $dados = array(
-            "alerta" => $alerta,
-            "catalogo" => $catalagos,
-            "view" => 'catalogo/exemplares'
-        );
+            $dados = array(
+                "alerta" => $alerta,
+                "catalogo" => $catalagos,
+                "view" => 'catalogo/exemplares'
+            );
 
-        $this->load->view('template', $dados);
+
+            $this->load->view('template', $dados);
+        }else{
+            $catalagos = $this->catalago_model->get_tombos_item($id_item,$_SESSION['idsession']); //retorno do model chamado com seu metodo
+
+            $dados = array(
+                "alerta" => $alerta,
+                "catalogo" => $catalagos,
+                "view" => 'catalogo/exemplares'
+            );
+
+
+            $this->load->view('template', $dados);
+        }
 
     }
 
@@ -401,7 +417,11 @@ class Catalogo extends CI_Controller
         }
     }
 
-   
+
+
+
+
+
 
 
 }

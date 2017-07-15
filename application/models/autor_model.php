@@ -79,6 +79,17 @@ class Autor_model extends CI_Model {
         }
     }
 
+    public function update_autor($id,$autor_atualizado){
+        $this->db->where('idautor',$id);
+        $this->db->update('autor',$autor_atualizado);
+
+        if($this->db->affected_rows()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     
 
 }

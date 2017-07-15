@@ -31,7 +31,7 @@ class Catalago_model extends CI_Model {
         $query= $this->db->get();
         return $query->result_array();
 
-   }
+    }
     //pega o item tipo_documemto para jogar no combobox do cadastro de catalagos
     public function get_classificacao() {
         $query = $this->db->get('classificacao');
@@ -84,6 +84,22 @@ class Catalago_model extends CI_Model {
             return false;
         }
     }
+
+
+    public function get_catalago_limit() {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->limit(20);
+        $query= $this->db->get();
+
+        if ($query->num_rows()) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
     //lista os livros com nome
     public function get_item($id_item) {
         $this->db->select('*');
@@ -107,7 +123,79 @@ class Catalago_model extends CI_Model {
         }
     }
     //lista os tombos
-    public function get_tombo($id_item) {
+    public function get_tombo($id_item,$session) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->where('tombo.idtombo', $id_item);
+        $this->db->where('tombo.baixado', null);
+        $this->db->where('tombo.escola_idescola',$session);
+
+
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->result_array();
+        } else {
+            return false;
+        }
+    }
+    public function get_tombo_adm($id_item) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->where('tombo.idtombo', $id_item);
+        $this->db->where('tombo.baixado', null);
+        //$this->db->where('tombo.escola_idescola',$session);
+
+
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function WsGetData($nome) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->like('titulo', $nome);
+        $this->db->where('tombo.baixado', null);
+
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_tombos_item_adm($id_item) {
         $this->db->select('*');
         $this->db->from('catalago');
         $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
@@ -119,6 +207,79 @@ class Catalago_model extends CI_Model {
         $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
         $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
         $this->db->where('catalago.idcatalago', $id_item);
+        $this->db->where('tombo.baixado', null);
+
+
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->result_array();
+        } else {
+            return false;
+        }
+    }
+    public function get_tombos_item($id_item,$session) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->where('catalago.idcatalago', $id_item);
+        $this->db->where('tombo.baixado', null);
+        $this->db->where('tombo.escola_idescola',$session);
+
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_tombo_nome($nome_item,$session) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->like('titulo', $nome_item);
+        $this->db->where('tombo.baixado', null);
+        $this->db->where('tombo.escola_idescola',$session);
+
+
+        $item = $this->db->get();
+
+        if ($item->num_rows()) {
+            return $item->result_array();
+        } else {
+            return false;
+        }
+    }
+    public function get_tombo_nome_adm($nome_item) {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->like('titulo', $nome_item);
+        $this->db->where('tombo.baixado', null);
+
 
 
         $item = $this->db->get();
@@ -166,7 +327,7 @@ class Catalago_model extends CI_Model {
     }
     //pegar o ultimo livro cadastrado no banco
     public  function get_id_ultimo(){
-             return $this->db->insert_id();
+        return $this->db->insert_id();
 
     }
     //DELECAO CRUD
@@ -197,12 +358,77 @@ class Catalago_model extends CI_Model {
         $query= $this->db->get();
 
         if ($query->num_rows()) {
-             return $query->num_rows();
+            return $query->num_rows();
+        } else {
+            return false;
+        }
+    }
+    public function get_tombo_data_adm($datai,$dataf)
+    {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        //$this->db->where('locado',"N");
+        $this->db->where('tombo.baixado', null);
+        $this->db->where('data_tombo >=', $datai);
+        $this->db->where('data_tombo <=', $dataf);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows()) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
+    public function get_tombo_data($datai,$dataf,$session)
+    {
+        $this->db->select('*');
+        $this->db->from('catalago');
+        $this->db->join('classificacao','classificacao.idclassificacao = catalago.classificacao_idclassificacao');
+        $this->db->join('tipo_documento','tipo_documento.idtipo_documento = catalago.tipo_documento_idtipo_documento');
+        $this->db->join('autores_catalago','autores_catalago.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('autor','autor.idautor = autores_catalago.autor_idautor');
+        $this->db->join('cidade','cidade.idcidade = catalago.cidade_idcidade');
+        $this->db->join('tombo','tombo.catalago_idcatalago = catalago.idcatalago');
+        $this->db->join('fornecedor','fornecedor.idfornecedor = tombo.fornecedor_idfornecedor');
+        $this->db->join('aquisicao','aquisicao.idaquisicao = tombo.aquisicao_idaquisicao');
+        $this->db->where('tombo.baixado', null);
+        $this->db->where('data_tombo >=', $datai);
+        $this->db->where('data_tombo <=', $dataf);
+        $this->db->where('tombo.escola_idescola',$session);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows()) {
+            return $query->result_array();
         } else {
             return false;
         }
     }
 
+    public function getcutter($dados)
+    {
+        $this->db->select('*');
+        $this->db->from('catalago c');
+        $this->db->join('tombo t','t.catalago_idcatalago = c.idcatalago');
+        $this->db->where('t.idtombo', $dados);
 
 
-}
+        $query = $this->db->get();
+
+        if ($query->num_rows()) {
+            return $query->row_object();
+        } else {
+            return false;
+        }
+    }
+
+    }

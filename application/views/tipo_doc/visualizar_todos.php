@@ -4,12 +4,12 @@
     <div class="box">
         <div class="box-header">
             <div class="box-body">
-                <div class="box box-success">
+                <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Listagem de Tipo de Documento</h3>
                     </div>
 
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-responsive table-striped">
         <thead>
         <tr class=" header" align="center">
             <th>ID</th>
@@ -26,8 +26,11 @@
                     <td><?php echo $item['idtipo_documento']; ?></td>
                     <td><?php echo $item['descricao']; ?></td>
                     <td>
-                        <a href="<?php echo base_url('tipo_doc/editar/' . $item['idtipo_documento']); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button></a>
-                        <a href="<?php echo base_url('tipo_doc/deletar/' . $item['idtipo_documento']); ?>" onclick="return confirm('Deseja deletar este Item?');"><button type="button" id="janela1" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+                        <a href="<?php echo base_url('tipo_doc/editar/' . $item['idtipo_documento']); ?>"><button type="button" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i></button></a>
+                        <?php if($_SESSION['tipo']==1){?>
+                        <a href="<?php echo base_url('tipo_doc/deletar/' . $item['idtipo_documento']); ?>" onclick="return confirm('Deseja deletar este Item? Ao deletar esse registro todos os registros vinculados a ele serão automaticamente excluidos...');"><button type="button" id="janela1" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button></a>
+                        <?php } else{?>
+                        <?php }?>
                         
                     </td>
                 </tr>
@@ -68,11 +71,6 @@
                                         "sFirst": "Primeiro",
                                         "sLast": "Último"
                                     }
-                                },
-
-                                "oAria": {
-                                    "sSortAscending": ": Ordenar colunas de forma ascendente",
-                                    "sSortDescending": ": Ordenar colunas de forma descendente"
                                 }
                             }
                         );

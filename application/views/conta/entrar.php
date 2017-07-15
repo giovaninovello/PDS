@@ -1,14 +1,14 @@
-<div class="fundo">
-<div class="login-box  " style="border: 1px solid black">
-    <div class="login-logo">
-        <b>Login</b></a>
-    </div>
 
+<div class="login-box">
+    <div class="login-logo">
+        <b><img src="<?php echo base_url('assets/img/capaologo.jpg')?>"  height="100px" width="80"  alt=""></b></a>
+    </div>
+    
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Entre com seu usuario para acessar o sistema</p>
 
-        <form action="<?= base_url('conta/entrar')?>" method="post">
+        <form action="<?= base_url('Conta/entrar')?>" method="post">
             <div class="form-group has-feedback">
                 <input type="email"  name="email"  id="email" class="form-control" placeholder="Email" value="<?php echo set_value('email'); ?>" required="">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

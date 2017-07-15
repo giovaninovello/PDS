@@ -10,6 +10,10 @@ $(document).ready(function () {
         $('#minhaModal_livro_devolucao').modal('show');
     });
 
+    $('#confirmar').click(function () {
+        $('#minhaModal_confirmacao').modal('show');
+    });
+
 
 
 
@@ -52,11 +56,12 @@ $(document).ready(function () {
 
             },
             success:function (data) {
-                console.log(data);
 
                 $('input[name="idretirada"]').val(data.idretirada);
+                $('input[name="titulo"]').val(data.titulo);
                 $('input[name="dataret"]').val(data.dataret);
                 $('input[name="datadevolucaoreal"]').val(data.datadev);
+                var imagem = $('#img').text(data.nome_imagem);
                 $('input[name="id_tombo"]').val(data.id_tombo);
                 $('input[name="aluno_nome"]').val(data.nome_aluno);
                 $('input[name="idaluno"]').val(data.idaluno);

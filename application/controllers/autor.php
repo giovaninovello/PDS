@@ -11,7 +11,7 @@ class Autor extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('logado')) {
 
-            redirect('conta/entrar');
+            redirect('Conta/entrar');
         }
     }
 
@@ -36,7 +36,7 @@ class Autor extends CI_Controller
     {
         $alerta = null;
         if ($this->input->post('cadastrar') === "cadastrar") {
-            if ($this->input->post('captcha')) redirect('conta/cadastrar');
+            if ($this->input->post('captcha')) redirect('Conta/cadastrar');
             //regras de validacao
             $this->form_validation->set_rules('nome', 'NOME', 'required');
 
@@ -72,45 +72,39 @@ class Autor extends CI_Controller
         $this->load->view('template', $dados);
     }
 
-    public function editar($id_usuario)
+    public function editar($id)
     {
         $alerta = null;
-        $id_usuario = (int)$id_usuario;
-        if ($id_usuario) {
-            $this->load->model('usuarios_model');
-            $existe = $this->usuarios_model->get_usuario($id_usuario);
+        $id = (int)$id;
+        if ($id) {
+            $this->load->model('autor_model');
+            $existe = $this->autor_model->get_autor_delete($id);
 
             if ($existe) {
                 $usuario = $existe;
                 if ($this->input->post('editar') === 'editar') {
-                    if ($this->input->post('captcha')) redirect('conta/entrar');
+                    if ($this->input->post('captcha')) redirect('Conta/entrar');
 
-                    $id_usuario_form = (int)$this->input->post('id_usuario');
-                    if ($id_usuario !== $id_usuario_form) redirect('conta/entrar');
+                    $id_usuario_form = (int)$this->input->post('idautor');
+                    if ($id !== $id) redirect('Conta/entrar');
                     //definir regras de validação
-                    $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email');
-                    $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[3]|max_length[20]');
-                    $this->form_validation->set_rules('confirmar_senha', 'CONFIRMAR_SENHA', 'required|min_length[3]|max_length[20]|matches[senha]');
+                    $this->form_validation->set_rules('nome', 'NOME', 'required');
                     //verificar se as regra sao atendidas
                     if ($this->form_validation->run() === true) {
-                        $usuario_atualizado = array(
-                            'nome' => $this->input->post('nome'),
-                            'email' => $this->input->post('email'),
-                            'senha' => $this->input->post('senha'),
-                            'tipo_usu' => $this->input->post('tipo')
-
+                        $autor_atualizado = array(
+                            'nome_aut' => $this->input->post('nome')
                         );
-                        $atualizou = $this->usuarios_model->update_usuario($this->input->post('id_usuario'), $usuario_atualizado);
+                        $atualizou = $this->autor_model->update_autor($this->input->post('id'), $autor_atualizado);
 
                         if ($atualizou) {
                             $alerta = array(
                                 "class" => "alert alert-success",
-                                "mensagem" => "O usuario foi atualizado com sucesso!<br>" . validation_errors()
+                                "mensagem" => "O autor foi atualizado com sucesso!<br>" . validation_errors()
                             );
                         } else {
                             $alerta = array(
                                 "class" => "ui red message",
-                                "mensagem" => "O usuario  nao foi atualizado!<br>" . validation_errors()
+                                "mensagem" => "O autor  nao foi atualizado!<br>" . validation_errors()
                             );
                         }
                     } else {
@@ -125,19 +119,19 @@ class Autor extends CI_Controller
                 $usuario = false;
                 $alerta = array(
                     "class" => "alert alert-danger",
-                    "mensagem" => "Atençao o usuario nao esta cadastrado!<br>" . validation_errors()
+                    "mensagem" => "Atençao o autor nao esta cadastrado!<br>" . validation_errors()
                 );
             }
         } else {
             $alerta = array(
                 "class" => "alert alert-danger",
-                "mensagem" => "Atençao o usuario informado esta incorreto!<br>" . validation_errors()
+                "mensagem" => "Atençao o autor informado esta incorreto!<br>" . validation_errors()
             );
         }
         $dados = array(
             "alerta" => $alerta,
-            "usuario" => $usuario,
-            "view" => 'usuario/editar'
+            "autor" => $usuario,
+            "view" => 'autor/editar'
         );
         $this->load->view('template', $dados);
     }

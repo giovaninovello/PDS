@@ -4,11 +4,11 @@
     <div class="box">
         <div class="box-header">
             <div class="box-body">
-                <div class="box box-success">
+                <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Listagem de Tipo de Classificação</h3>
                     </div>
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="example1" class="table table-responsive table-striped">
         <thead>
 
         <tr class="header">
@@ -28,8 +28,11 @@
                     <td><?php echo $item['numero_cla']; ?></td>
                     <td>
                         <div class="mini ui icon buttons">
-                            <a href="<?php echo base_url('classificacao/editar/' . $item['idclassificacao']); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></button></a>
-                            <a href="<?php echo base_url('classificacao/deletar/' . $item['idclassificacao']); ?>" onclick="return confirm('Deseja deletar este item?');"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>
+                            <a href="<?php echo base_url('classificacao/editar/' . $item['idclassificacao']); ?>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></button></a>
+                            <?php if($_SESSION['tipo']==1){?>
+                            <a href="<?php echo base_url('classificacao/deletar/' . $item['idclassificacao']); ?>" onclick="return confirm('Deseja deletar este item? Ao deletar esse item todos os registros vinculados a ele será excluidos automticamente...');"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></a>
+                            <?php } else{?>
+                            <?php }?>
                         </div>
                     </td>
                 </tr>

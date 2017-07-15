@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3492d4d3cb1daf917dd60dae8125b69f",
-    "content-hash": "06020c9ea82c206f49a784a1d6ae0ad3",
+    "hash": "194fc95b590bdd7e0a7ddceb39db1c05",
+    "content-hash": "e6bcde8bfacc6aec22246cd1c50a2009",
     "packages": [
         {
             "name": "mpdf/mpdf",
-            "version": "v6.1.2",
+            "version": "v6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpdf/mpdf.git",
-                "reference": "da078bc2669d3f98553ac41f920ead4c17c951ad"
+                "reference": "7f138bf7508eac895ac2c13d2509b056ac7e7e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/da078bc2669d3f98553ac41f920ead4c17c951ad",
-                "reference": "da078bc2669d3f98553ac41f920ead4c17c951ad",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/7f138bf7508eac895ac2c13d2509b056ac7e7e97",
+                "reference": "7f138bf7508eac895ac2c13d2509b056ac7e7e97",
                 "shasum": ""
             },
             "require": {
@@ -56,7 +56,76 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2016-07-20 12:31:58"
+            "time": "2016-12-12 10:42:18"
+        },
+        {
+            "name": "picqer/php-barcode-generator",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/picqer/php-barcode-generator.git",
+                "reference": "5328d821b076727163a3ad25373973055faadead"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/picqer/php-barcode-generator/zipball/5328d821b076727163a3ad25373973055faadead",
+                "reference": "5328d821b076727163a3ad25373973055faadead",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Picqer\\Barcode\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "homepage": "http://nicolaasuni.tecnick.com"
+                },
+                {
+                    "name": "Casper Bakker",
+                    "email": "info@picqer.com"
+                }
+            ],
+            "description": "An easy to use, non-bloated, barcode generator in PHP. Creates SVG, PNG, JPG and HTML images from the most used 1D barcode standards.",
+            "homepage": "http://github.com/picqer/php-barcode-generator",
+            "keywords": [
+                "CODABAR",
+                "Code11",
+                "Code93",
+                "EAN13",
+                "KIX",
+                "KIXCODE",
+                "MSI",
+                "POSTNET",
+                "Pharma",
+                "Standard 2 of 5",
+                "barcode",
+                "barcode generator",
+                "code128",
+                "code39",
+                "ean",
+                "html",
+                "jpeg",
+                "jpg",
+                "php",
+                "png",
+                "svg",
+                "upc"
+            ],
+            "time": "2016-10-17 14:20:28"
         },
         {
             "name": "setasign/fpdi",

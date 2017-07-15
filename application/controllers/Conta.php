@@ -16,23 +16,29 @@ class Conta extends CI_Controller {
 
     }
 
-    public function entrar() {
+    public function Entrar() {
 
         $alerta = null;
         if ($this->input->post('entrar') === 'entrar') {
             if ($this->input->post('captcha'))
-                redirect('conta/entrar');
+                redirect('Conta/entrar');
             $this->form_validation->set_rules('email', 'EMAIL', 'required|valid_email');
             $this->form_validation->set_rules('senha', 'SENHA', 'required|min_length[6]|max_length[20]');
 
             if ($this->form_validation->run() === TRUE) {
-                $this->load->model('usuarios_model');
+
                 $email = $this->input->post('email');
                 $senha = $this->input->post('senha');
 
-                $login_existe = $this->usuarios_model->check_login($senha, $email);
-                $this->load->model('catalago_model'); //chamo o model
-                $catalagos = $this->catalago_model->get_catalago_count(); //retorno do model chamado com seu metodo
+
+                $this->load->model('Usuarios_model');
+                $login_existe = $this->Usuarios_model->check_login($senha, $email);
+                $login_escola = $this->Usuarios_model->check_escola($login_existe['escola_idescola']);
+
+                $this->load->model('Catalago_model'); //chamo o model
+                $catalagos = $this->Catalago_model->get_catalago_count();
+                $this->load->model('Tombo_model');
+                $baixados = $this->Tombo_model->get_baixados_count();
 
 
                 if ($login_existe) {
@@ -44,9 +50,14 @@ class Conta extends CI_Controller {
                         'email' => $usuario['email'],
                         'id_usuario'=> $usuario['idusuarios'],
                         'tipo'=>$usuario['tipo_usu'],
-                        'catalago'=>$catalagos
+                        'escola'=>$login_escola['nome_escola'],
+                        'idsession'=>$login_escola['idescola'],
+                        'catalago'=>$catalagos,
+                        'baixa'=>$baixados
 
                     );
+
+
 
                     //inicializa a sessao
                     $this->session->set_userdata($session);
@@ -69,8 +80,8 @@ class Conta extends CI_Controller {
         }
         $dados = array(
             "alerta" => $alerta,
-            "view"=>'conta/entrar',
-            "hidemenu"=>true,
+            "view"=>'Conta/entrar',
+            "hidemenu"=>true
 
 
         );
@@ -79,20 +90,12 @@ class Conta extends CI_Controller {
 
        
     }
-
-    public function sem_permissao() {
-
-        $dados = array(
-            "view"=>'conta/sem-permissao',
-            "hidemenu"=>true
-        );
-        $this->load->view('template', $dados);
-    }
+    
 
     public function sair() {
 
         $this->session->sess_destroy();
-        redirect('conta/entrar');
+        redirect('Conta/entrar');
     }
     
 }

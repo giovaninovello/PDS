@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-        <div class="box box-success">
+        <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Edicao de Tipo de Documento</h3>
                 <input type="hidden" name="captcha">
@@ -38,8 +38,8 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn bg-black">voltar</a>
-                    <button type="submit"  name="editar" value="editar" class="btn btn-success  btn-flat">Salvar Alterações</button>
+                    <a href="<?php echo base_url('dashboard'); ?>" type="submit" class="btn bg-black btn-sm btn-flat">Cancelar</a>
+                    <button type="submit"  name="editar" value="editar" class="btn btn-success  btn-sm btn-flat">Salvar Alterações</button>
 
                     <!-- /.box-footer -->
             </form>
